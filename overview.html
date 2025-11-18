@@ -2,30 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hilltop Youth Movement</title>
+  <title>Overview | Hilltop Youth Movement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap 3 -->
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ================= HEADER (fixed, shared) ================= -->
+  <!-- HEADER (same on all pages) -->
   <div id="header_wrapper">
     <div class="container">
       <div class="header_box">
-
-        <!-- Logo (left) -->
         <a href="index.html" class="logo">
           <img src="img/Hilltop-Youth-Logo.png"
                alt="Hilltop Youth Movement Logo">
         </a>
 
-        <!-- Navigation (right) -->
         <nav class="navbar navbar-default" role="navigation">
           <div class="navbar-header">
             <button type="button"
@@ -41,8 +35,8 @@
 
           <div class="collapse navbar-collapse navStyle" id="main-nav">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
-              <li><a href="overview.html">Overview</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li class="active"><a href="overview.html">Overview</a></li>
               <li><a href="origins.html">Origins</a></li>
               <li><a href="ideology.html">Ideology</a></li>
               <li><a href="activities.html">Activities</a></li>
@@ -50,41 +44,50 @@
             </ul>
           </div>
         </nav>
-
       </div>
     </div>
   </div>
 
-  <!-- ================= HERO / HOME ================= -->
-  <div class="top_cont_outer" id="home">
-    <div class="hero_wrapper">
+  <!-- Subpage hero with hilltop background -->
+  <div class="top_cont_outer"
+       style="background-image:url('img/hilltop-overview.webp');">
+    <div class="hero_wrapper" style="min-height: 60vh;">
       <div class="container hero_section">
         <div class="top_left_cont">
-          <h1>HILLTOP YOUTH<br> MOVEMENT</h1>
-          <a href="overview.html" class="btn-hero">Learn More</a>
+          <h1>Overview</h1>
+          <p style="max-width: 650px; margin: 0 auto; font-size: 18px;">
+            A wide-angle look at the Hilltop Youth movement and how it fits into
+            Israel’s political, religious, and geographical landscape.
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- (Optional) a short intro below the hero -->
+  <!-- Main content -->
   <section class="page_section alabaster">
     <div class="container">
-      <h2>Welcome</h2>
+      <h2>Who Are the Hilltop Youth?</h2>
       <h6>
-        A digital magazine exploring the Hilltop Youth, their beliefs,
-        practices, and the wider debates surrounding them.
+        A brief introduction to the movement and the questions this project asks.
       </h6>
       <p>
-        Use the navigation above to move through the project. Each section
-        offers a focused look at a different dimension of the movement:
-        historical origins, ideology, everyday activities, and the research
-        sources behind this project.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at
+        lacus in justo pharetra volutpat. Proin gravida, justo a consequat
+        congue, justo odio tempor nisl, vel auctor lectus ipsum eget arcu.
+        Maecenas ultricies, mi ac pharetra iaculis, sem urna efficitur augue,
+        sit amet dapibus justo ligula non leo.
+      </p>
+
+      <p>
+        This section can summarize your research question, explain why the
+        Hilltop Youth matter in conversations about religious extremism, and
+        point ahead to the more detailed pages on origins, ideology, and
+        activities.
       </p>
     </div>
   </section>
 
-  <!-- ================= FOOTER ================= -->
   <div class="footer_wrapper">
     <div class="container">
       <div class="footer_bottom">
@@ -93,7 +96,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
