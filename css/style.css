@@ -160,13 +160,18 @@ p {
 
 /* ================= HERO SECTION ================= */
 
+/* Default hero background for homepage; subpages override image inline */
 .top_cont_outer {
   position: relative;
   background: url("../img/hilltopyouth-background.webp") center center no-repeat;
   background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* change to 'fixed' if you want parallax */
   min-height: 100vh;
 }
 
+/* Wrapper fills viewport and centers content */
 .hero_wrapper {
   position: relative;
   min-height: 100vh;
@@ -175,7 +180,7 @@ p {
   justify-content: center;
 }
 
-/* dark overlay for readability */
+/* Dark overlay for readability */
 .hero_wrapper::before {
   content: "";
   position: absolute;
@@ -183,6 +188,7 @@ p {
   background: rgba(0, 0, 0, 0.45);
 }
 
+/* Content above overlay */
 .hero_section {
   position: relative;
   z-index: 1;
@@ -224,6 +230,16 @@ p {
 .btn-hero:hover {
   background: #ffffff;
   color: #1457ad;
+}
+
+/* ================= GENERIC SECTION STYLES ================= */
+
+.page_section {
+  padding: 70px 0;
+}
+
+.page_section.alabaster {
+  background: #f7f7f7;
 }
 
 /* ================= SERVICES / SECTIONS ================= */
@@ -611,7 +627,6 @@ figure.effect-oscar:hover img {
   }
 }
 
-/* Generic hero background styling for all subpages */
 .top_cont_outer {
   background-size: cover;
   background-position: center center;
@@ -627,17 +642,4 @@ figure.effect-oscar:hover img {
   inset: 0;
   background: rgba(0,0,0,0.45); /* adjust opacity */
   z-index: 1;
-}
-
-.hero_wrapper,
-.hero_section,
-.top_left_cont {
-  position: relative;
-  z-index: 2; /* puts text above overlay */
-}
-
-/* Optional: smooth fade on hero text */
-.top_left_cont h1,
-.top_left_cont p {
-  animation: fadeInUp 1s ease-out;
 }

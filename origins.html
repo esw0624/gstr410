@@ -5,16 +5,54 @@
   <title>Origins | Hilltop Youth Movement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Local Font Awesome + Animations (same as overview/home) -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/animation.css">
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-specific tweaks for Origins hero -->
+  <style>
+    /* Slightly shorter hero like Overview, but with same vertical offset feel */
+    .hero-origins {
+      min-height: 40vh;
+      padding: 120px 0 60px; /* pushes text down a bit like home/overview */
+    }
+
+    @media (max-width: 768px) {
+      .hero-origins {
+        padding: 110px 0 40px;
+      }
+    }
+
+    /* Pull content closer to hero (optional; mirrors overview pattern) */
+    .origins-section {
+      margin-top: -30px;
+      padding-top: 40px;
+      padding-bottom: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .origins-section {
+        margin-top: -20px;
+        padding-top: 30px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ============== HEADER ============== -->
   <div id="header_wrapper">
     <div class="container">
       <div class="header_box">
+        
         <a href="index.html" class="logo">
           <img src="img/Hilltop-Youth-Logo.png"
                alt="Hilltop Youth Movement Logo">
@@ -43,30 +81,33 @@
               <li><a href="sources.html">Sources</a></li>
             </ul>
           </div>
+
         </nav>
       </div>
     </div>
   </div>
 
-  <!-- Subpage hero -->
-<div class="top_cont_outer"
-     style="background-image:url('img/Hilltop-Youth-1.webp');">
-  <div class="hero_wrapper" style="min-height: 60vh;">
-    <div class="container hero_section text-center">
-      <div class="top_left_cont">
-        <h1>Origins</h1>
-        <p style="max-width: 650px; margin: 0 auto; font-size: 18px;">
-          "Everyone that's there should move, should run, should grab more hills,
-          expand the territory. Everything that's grabbed will be in our hands.
-          Everything we don't grab will be in their hands."
-        </p>
+  <!-- ============== HERO SECTION ============== -->
+  <div class="top_cont_outer page-hero"
+       style="background-image:url('img/Hilltop-Youth-1.webp');">
+    <div class="hero_wrapper hero-origins">
+      <div class="container hero_section text-center">
+        <div class="top_left_cont">
+          <!-- If animate.css is present, these will fade; otherwise no harm -->
+          <h1 class="animated fadeInDown">Origins</h1>
+          <p class="animated fadeInUp"
+             style="max-width: 650px; margin: 0 auto; font-size: 18px;">
+            "Everyone that's there should move, should run, should grab more hills,
+            expand the territory. Everything that's grabbed will be in our hands.
+            Everything we don't grab will be in their hands."
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-  <!-- Main content -->
-  <section class="page_section">
+  <!-- ============== MAIN CONTENT ============== -->
+  <section class="page_section origins-section">
     <div class="container">
       <h2>Historical and Social Roots</h2>
       <h6>How geography, politics, and religious settler culture converged.</h6>
@@ -86,6 +127,7 @@
     </div>
   </section>
 
+  <!-- ============== FOOTER ============== -->
   <div class="footer_wrapper">
     <div class="container">
       <div class="footer_bottom">
@@ -94,7 +136,9 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
