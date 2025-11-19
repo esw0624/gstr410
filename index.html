@@ -9,8 +9,38 @@
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
+  <!-- Animation libraries -->
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/animation.css">
+
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Home-page-specific animations -->
+  <style>
+    /* Hero animations */
+    .home-hero .top_left_cont h1 {
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .home-hero .btn-hero {
+      animation: fadeInUp 1s ease-out;
+      animation-delay: 0.3s;
+      animation-fill-mode: both;
+    }
+
+    /* Pulse the button on hover using animate.css keyframes */
+    .home-hero .btn-hero:hover {
+      animation: pulse 0.8s;
+    }
+
+    /* Intro section animation */
+    .home-intro {
+      animation: fadeInUp 1s ease-out;
+      animation-delay: 0.5s;
+      animation-fill-mode: both;
+    }
+  </style>
 </head>
 <body>
 
@@ -56,7 +86,7 @@
   </div>
 
   <!-- ================= HERO / HOME ================= -->
-  <div class="top_cont_outer" id="home">
+  <div class="top_cont_outer home-hero" id="home">
     <div class="hero_wrapper">
       <div class="container hero_section">
         <div class="top_left_cont">
@@ -68,11 +98,11 @@
   </div>
 
   <!-- (Optional) a short intro below the hero -->
-  <section class="page_section alabaster">
+  <section class="page_section alabaster home-intro">
     <div class="container">
       <h2>Welcome</h2>
       <h6>
-        A digital magazine exploring the Hilltop Youth, their beliefs,
+        An informative website project exploring the Hilltop Youth, their beliefs,
         practices, and the wider debates surrounding them.
       </h6>
       <p>

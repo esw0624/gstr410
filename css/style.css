@@ -610,3 +610,34 @@ figure.effect-oscar:hover img {
     width: 80%;
   }
 }
+
+/* Generic hero background styling for all subpages */
+.top_cont_outer {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* or fixed for parallax */
+  position: relative;
+}
+
+/* Slight dark overlay so white text is readable */
+.top_cont_outer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45); /* adjust opacity */
+  z-index: 1;
+}
+
+.hero_wrapper,
+.hero_section,
+.top_left_cont {
+  position: relative;
+  z-index: 2; /* puts text above overlay */
+}
+
+/* Optional: smooth fade on hero text */
+.top_left_cont h1,
+.top_left_cont p {
+  animation: fadeInUp 1s ease-out;
+}

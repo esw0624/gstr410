@@ -5,13 +5,91 @@
   <title>Overview | Hilltop Youth Movement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Local Font Awesome + Animations -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/animation.css">
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-specific tweaks -->
+  <style>
+    /* Tighten hero height a bit */
+    .hero-overview {
+      min-height: 40vh;
+      padding: 80px 0 40px;
+    }
+
+    /* Fix large gap between hero and content */
+    .overview-section {
+      margin-top: -40px;      /* pulls section up toward hero */
+      padding-top: 40px;      /* keep breathing room for content */
+      padding-bottom: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .overview-section {
+        margin-top: -20px;
+        padding-top: 30px;
+      }
+    }
+
+    /* Quick fact cards: hover + subtle animation */
+    .fact-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Colored icon circle to add some life */
+    .fact-icon {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: rgba(92, 75, 138, 0.16); /* soft purple */
+    }
+
+    .fact-icon .fa {
+      font-size: 22px;
+    }
+
+    /* Tab nav styling */
+    .tab-nav-overview > li > a {
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      margin: 0 5px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .tab-nav-overview > li.active > a,
+    .tab-nav-overview > li > a:hover,
+    .tab-nav-overview > li > a:focus {
+      background: #5c4b8a;
+      border-color: #5c4b8a;
+      color: #fff !important;
+    }
+
+    /* Tab pane text */
+    .tab-content p {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER (same on all pages) -->
+  <!-- ============== HEADER (same on all pages) ============== -->
   <div id="header_wrapper">
     <div class="container">
       <div class="header_box">
@@ -48,14 +126,15 @@
     </div>
   </div>
 
-  <!-- Subpage hero with hilltop background -->
+  <!-- ============== SUBPAGE HERO ============== -->
   <div class="top_cont_outer"
        style="background-image:url('img/hilltop-overview.webp');">
-    <div class="hero_wrapper" style="min-height: 60vh;">
-      <div class="container hero_section">
+    <div class="hero_wrapper hero-overview">
+      <div class="container hero_section text-center">
         <div class="top_left_cont">
-          <h1>Overview</h1>
-          <p style="max-width: 650px; margin: 0 auto; font-size: 18px;">
+          <h1 class="animated fadeInDown">Overview</h1>
+          <p class="animated fadeInUp"
+             style="max-width: 650px; margin: 0 auto; font-size: 18px;">
             A wide-angle look at the Hilltop Youth movement and how it fits into
             Israel’s political, religious, and geographical landscape.
           </p>
@@ -64,30 +143,162 @@
     </div>
   </div>
 
-  <!-- Main content -->
-  <section class="page_section alabaster">
+  <!-- ============== MAIN CONTENT ============== -->
+  <section class="page_section alabaster overview-section">
     <div class="container">
-      <h2>Who Are the Hilltop Youth?</h2>
-      <h6>
-        A brief introduction to the movement and the questions this project asks.
-      </h6>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at
-        lacus in justo pharetra volutpat. Proin gravida, justo a consequat
-        congue, justo odio tempor nisl, vel auctor lectus ipsum eget arcu.
-        Maecenas ultricies, mi ac pharetra iaculis, sem urna efficitur augue,
-        sit amet dapibus justo ligula non leo.
-      </p>
 
-      <p>
-        This section can summarize your research question, explain why the
-        Hilltop Youth matter in conversations about religious extremism, and
-        point ahead to the more detailed pages on origins, ideology, and
-        activities.
-      </p>
+      <!-- Quick facts row -->
+      <div class="row animated fadeInUp" style="margin-bottom: 40px;">
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center fact-card">
+            <div class="panel-body">
+              <div class="fact-icon">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </div>
+              <h4>Where</h4>
+              <p>Informal outposts and settlements scattered across the hills of the West Bank.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center fact-card">
+            <div class="panel-body">
+              <div class="fact-icon">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </div>
+              <h4>Who</h4>
+              <p>Mostly young Jewish nationalists shaped by religious Zionism and neo-Kahanist ideas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center fact-card">
+            <div class="panel-body">
+              <div class="fact-icon">
+                <i class="fa fa-bolt" aria-hidden="true"></i>
+              </div>
+              <h4>How</h4>
+              <p>“Price-tag” attacks, land seizures, and conflicts with both Palestinians and Israeli forces.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center fact-card">
+            <div class="panel-body">
+              <div class="fact-icon">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+              </div>
+              <h4>Why It Matters</h4>
+              <p>Growing international concern, sanctions, and debates about extremism in Israel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs intro -->
+      <div class="animated fadeInUp">
+        <h2 style="margin-bottom: 10px;">Explore the Movement</h2>
+        <h6 style="margin-bottom: 30px;">
+          Click through the sections below to move from a basic snapshot of the Hilltop Youth
+          to their tactics, culture, and international impact.
+        </h6>
+      </div>
+
+      <!-- Tab navigation -->
+      <ul class="nav nav-pills nav-justified tab-nav-overview animated fadeInUp"
+          role="tablist" style="margin-bottom: 25px;">
+        <li role="presentation" class="active">
+          <a href="#tab-snapshot" aria-controls="tab-snapshot" role="tab" data-toggle="tab">
+            Introduction
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#tab-violence" aria-controls="tab-violence" role="tab" data-toggle="tab">
+            Violence &amp; “Price-Tag” Attacks
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#tab-culture" aria-controls="tab-culture" role="tab" data-toggle="tab">
+            Leadership &amp; Culture
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#tab-response" aria-controls="tab-response" role="tab" data-toggle="tab">
+            International Response
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tab content -->
+      <div class="tab-content animated fadeInUp">
+
+        <!-- TAB 1 -->
+        <div role="tabpanel" class="tab-pane fade in active" id="tab-snapshot">
+          <p>
+            The Hilltop Youth is a radical Jewish nationalist movement based primarily in the West Bank,
+            emerging in the early 2000s as an informal faction within the broader Israeli settler movement.
+            The group’s ideology blends elements of religious Zionism with neo-Kahanist thought, drawing
+            heavily on the teachings of Rabbi Meir Kahane, whose writings advocate Jewish territorial
+            maximalism and the removal of Palestinians from the land (Magid, 2021). Members of the Hilltop
+            Youth frequently reject the authority of the Israeli state, asserting that divine law obligates
+            them to establish Jewish presence across the biblical land of Israel, even through illegal
+            settlement outposts and confrontational actions (Garcia-Navarro, 2012; Tzfadia, 2017).
+          </p>
+        </div>
+
+        <!-- TAB 2 -->
+        <div role="tabpanel" class="tab-pane fade" id="tab-violence">
+          <p>
+            Across the West Bank, individuals associated with the Hilltop Youth have participated in a range
+            of violent and retaliatory actions often referred to as “price-tag” attacks, which are acts meant
+            to intimidate Palestinians and pressure the Israeli government. These incidents include arson,
+            vandalism of Palestinian mosques and schools, destruction of olive groves, property damage, and
+            physical assaults (Byman &amp; Sachs, 2012; Satherley, 2013). One of the most notorious cases linked
+            to this extremist milieu is the 2015 Duma arson attack, in which a Palestinian family’s home was
+            firebombed, killing three members of the Dawabshe family and drawing widespread condemnation
+            (Al Jazeera, 2018). Reports also document frequent confrontations between Hilltop Youth activists
+            and Israeli security forces, as the group’s anti-state ideology increasingly targets both Palestinians
+            and the Israeli military (Garcia-Navarro, 2012; Holcman, 2025).
+          </p>
+        </div>
+
+        <!-- TAB 3 -->
+        <div role="tabpanel" class="tab-pane fade" id="tab-culture">
+          <p>
+            Recent years have seen a marked escalation in settler violence, with over 1,000 attacks documented
+            in the West Bank following the October 7, 2023 Hamas attacks (Perliger, 2025). Analysts note that
+            while the Hilltop Youth lacks formal hierarchy, certain figures such as Meir Ettinger, the grandson
+            of Rabbi Kahane, have been identified by Israeli authorities as ideological leaders or influential
+            spokespeople (Magid, 2021). The movement’s internal culture is shaped by separatism and resistance
+            to modernity; members often avoid digital technology and mainstream communication platforms as part
+            of a broader effort to maintain ideological purity and communal isolation (Rosenberg &amp;
+            Vogelman-Natan, 2023).
+          </p>
+        </div>
+
+        <!-- TAB 4 -->
+        <div role="tabpanel" class="tab-pane fade" id="tab-response">
+          <p>
+            International governments have recently taken formal action in response to rising extremist settler
+            violence. In 2024, both the United States and the European Union designated entities and individuals
+            tied to the Hilltop Youth as extremist actors. The U.S. Department of the Treasury issued sanctions
+            citing arson, assaults, and targeted attacks on Palestinian civilians (U.S. Department of the Treasury,
+            2024), while the EU imposed asset freezes and visa bans on affiliated individuals and organizations
+            for their involvement in serious human rights abuses in the West Bank (Council of the European Union,
+            2024). These measures reflect growing global recognition of the group’s role in destabilizing the
+            region and contributing to the rise of far-right religious extremism in Israel.
+          </p>
+        </div>
+
+      </div><!-- /.tab-content -->
+
     </div>
   </section>
 
+  <!-- ============== FOOTER ============== -->
   <div class="footer_wrapper">
     <div class="container">
       <div class="footer_bottom">
@@ -96,6 +307,7 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
