@@ -19,23 +19,16 @@
 
   <!-- Page-specific tweaks -->
   <style>
-    /* Tighten hero height a bit */
-    .hero-overview {
-      min-height: 40vh;
-      padding: 80px 0 40px;
-    }
-
-    /* Fix large gap between hero and content */
+    /* Space between hero and main content (similar to origins) */
     .overview-section {
-      margin-top: -40px;      /* pulls section up toward hero */
-      padding-top: 40px;      /* keep breathing room for content */
+      padding-top: 60px;
       padding-bottom: 60px;
     }
 
     @media (max-width: 768px) {
       .overview-section {
-        margin-top: -20px;
-        padding-top: 30px;
+        padding-top: 40px;
+        padding-bottom: 50px;
       }
     }
 
@@ -126,10 +119,10 @@
     </div>
   </div>
 
-  <!-- ============== SUBPAGE HERO ============== -->
-  <div class="top_cont_outer"
-       style="background-image:url('img/hilltop-overview.webp');">
-    <div class="hero_wrapper hero-overview">
+  <!-- ============== SUBPAGE HERO (MATCHING ORIGINS + IDEOLOGY) ============== -->
+  <div class="top_cont_outer page-hero"
+       style="background-image:url('img/hilltop-youth-overview1.jpg');">
+    <div class="hero_wrapper">
       <div class="container hero_section text-center">
         <div class="top_left_cont">
           <h1 class="animated fadeInDown">Overview</h1>
