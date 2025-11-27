@@ -5,9 +5,45 @@
   <title>Activities | Hilltop Youth Movement</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Optional animations (same set you use on other pages) -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/animation.css">
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Inline styles for carousel dots -->
+  <style>
+    .incident-pagination {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .incident-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      margin: 0 4px;
+      display: inline-block;
+      background-color: #ccc;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .incident-dot.active {
+      background-color: #333;
+    }
+
+    .incident-dot:focus {
+      outline: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -48,44 +84,375 @@
     </div>
   </div>
 
-  <!-- Subpage hero -->
-  <div class="top_cont_outer"
-       style="background-image:url('img/hilltop-activities.webp');">
-    <div class="hero_wrapper" style="min-height: 60vh;">
-      <div class="container hero_section">
+  <!-- HERO SECTION (with animation) -->
+  <div class="top_cont_outer page-hero"
+       style="background-image:url('img/activities-background.png');">
+    <div class="hero_wrapper">
+      <div class="container hero_section text-center">
         <div class="top_left_cont">
-          <h1>Activities</h1>
-          <p style="max-width: 650px; margin: 0 auto; font-size: 18px;">
-            From building outposts and grazing herds to “price tag” attacks and
-            confrontations with soldiers and Palestinians.
+          <h1 class="animated fadeInDown">Activities</h1>
+          <p class="animated fadeInUp"
+             style="max-width: 650px; margin: 0 auto; font-size: 18px;">
+            How extremist ideology translates into real-world actions.
           </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main content -->
+  <!-- MAIN CONTENT -->
   <section class="page_section">
     <div class="container">
-      <h2>Everyday Practices and Key Actions</h2>
-      <h6>How ideology becomes lived reality on the hilltops.</h6>
+      <h2>Patterns of Violence and Direct Action</h2>
+      <h6>Examining the tactics that define Hilltop Youth activity in the West Bank.</h6>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-        convallis, odio at mollis hendrerit, felis ante pulvinar mi, nec
-        tincidunt ex arcu nec dui. Integer tristique justo non leo auctor
-        molestie. Cras sodales velit vitae arcu scelerisque, id hendrerit
-        turpis congue.
+        The Hilltop Youth are widely recognized for their direct-action tactics and confrontational presence in the West Bank. 
+        Although they lack a formal organizational structure, their activities consistently reflect patterns of settler-extremist behavior. 
+        One of the group’s defining methods is the “price-tag” strategy, which involves retaliatory attacks against Palestinians or Israeli authorities following settlement demolitions or government actions they oppose. 
+        According to the U.S. Department of the Treasury (2024), the Hilltop Youth have repeatedly attacked Palestinians and destroyed Palestinian homes and property in the West Bank, and have engaged in killings, 
+        mass arson, and other “price tag” attacks intended to intimidate Palestinian civilians.
       </p>
 
       <p>
-        On this page, you can break down types of actions: outpost building,
-        Torah study and communal life, confrontations with state forces, and
-        attacks against Palestinian property or people. Connect them back to
-        the motivations you describe in your research question.
+        These incidents commonly involve burning vehicles or buildings, vandalizing property, uprooting olive trees, and leaving threatening graffiti (U.S. Department of the Treasury, 2024). 
+        Such actions demonstrate how the group uses symbolic and material violence to assert its presence and resistance. 
+        Taken together, these activities reveal a persistent pattern of ideologically motivated settlement expansion, vigilante retaliation, and defiance of state authority. 
+        Their behavior reflects a blend of religious nationalism and youth-driven rebellion, making their actions distinct from mainstream settler organizations while still significant enough to draw formal sanctions and international concern.
       </p>
+
+      <hr>
+
+      <!-- INCIDENT CAROUSEL -->
+      <section id="incident-carousel" class="incident-carousel">
+        <h3 class="incident-title">
+          Documented Incidents in the News
+        </h3>
+
+        <!-- Left/right arrow buttons for slides -->
+        <button class="incident-nav incident-prev" type="button">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous incidents</span>
+        </button>
+
+        <button class="incident-nav incident-next" type="button">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next incidents</span>
+        </button>
+
+        <!-- Cards row (JS will only show 3 at a time) -->
+        <div class="row incident-cards-row animated fadeInUp">
+
+          <!-- CARD 1: Duma arson / Lewis 2015 -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img src="img/hilltop-youth-activities-1-burning.jpg"
+                     class="img-responsive"
+                     alt="Aftermath of the 2015 Duma arson attack by suspected Hilltop Youth members">
+
+                <h4 class="incident-card-title">Duma Arson Attack, 2015</h4>
+
+                <p class="incident-card-text">
+                  On July 31, 2015, a Palestinian family home in the West Bank
+                  village of Duma was set on fire in an arson attack that killed
+                  18-month-old Ali Dawabshe and fatally injured his parents. A
+                  former Hilltop Youth member later described how extremist
+                  settler cells carefully planned such attacks, conducted
+                  surveillance of homes, and destroyed evidence to evade arrest
+                  (Lewis, 2015).
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="http://www.timesofisrael.com/inside-the-hilltop-youth-planning-attacks-evading-capture/"
+                     target="_blank">
+                    Lewis, A. (2015), <em>The Times of Israel</em>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Mosque arson (Al Jazeera 2025) with its own image slider -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <!-- IMAGE SLIDER FOR THIS CARD -->
+                <div class="incident-image-slider">
+                  <button class="image-nav image-prev" type="button">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous image</span>
+                  </button>
+
+                  <div class="incident-image-wrapper">
+                    <img src="img/mosque-1.webp"
+                         class="img-responsive slider-image active"
+                         alt="Burned interior of Hajja Hamida Mosque after arson attack">
+                    <img src="img/mosque-2.webp"
+                         class="img-responsive slider-image"
+                         alt="Exterior damage and graffiti after mosque arson attack">
+                    <img src="img/mosque-3.webp"
+                         class="img-responsive slider-image"
+                         alt="Scorched walls and debris inside the mosque">
+                  </div>
+
+                  <button class="image-nav image-next" type="button">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next image</span>
+                  </button>
+                </div>
+
+                <h4 class="incident-card-title">
+                  Arson Attack on Hajja Hamida Mosque, 2025
+                </h4>
+
+                <p class="incident-card-text">
+                  In November 2025, Israeli settlers allegedly set fire to the
+                  Hajja Hamida Mosque in the village of Deir Istiya near Salfit,
+                  burning parts of the prayer hall and damaging copies of the
+                  Quran. Photographs from the scene showed racist anti-Palestinian
+                  slogans sprayed on the mosque walls and charred religious
+                  texts, prompting Palestinian officials to denounce the arson as
+                  a “heinous crime” against a holy site in the occupied West Bank
+                  (Al Jazeera, 2025).
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="https://www.aljazeera.com/news/2025/11/13/israeli-settler-attack-on-west-bank-mosque-draws-international-condemnation"
+                     target="_blank">
+                    Al Jazeera (2025), <em>“Israeli settler attack on West Bank mosque draws international condemnation”</em>
+                  </a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Olive harvest attacks (Al Jazeera 2025-10-31) with image slider -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <!-- IMAGE SLIDER FOR OLIVE HARVEST CARD -->
+                <div class="incident-image-slider">
+                  <button class="image-nav image-prev" type="button">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous image</span>
+                  </button>
+
+                  <div class="incident-image-wrapper">
+                    <img src="img/olive-1.webp"
+                         class="img-responsive slider-image active"
+                         alt="Palestinian olive groves damaged by settler attacks in the West Bank">
+                    <img src="img/olive-2.png"
+                         class="img-responsive slider-image"
+                         alt="Burned and uprooted olive trees after settler violence">
+                  </div>
+
+                  <button class="image-nav image-next" type="button">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next image</span>
+                  </button>
+                </div>
+
+                <h4 class="incident-card-title">
+                  Attacks on Palestinian Olive Harvesters, 2025
+                </h4>
+
+                <p class="incident-card-text">
+                  During the 2025 olive harvest season, UN monitors documented
+                  over 120 settler attacks across roughly 70 West Bank towns and
+                  villages, including vandalism of more than 4,000 olive trees.
+                  Al Jazeera reports that settlers torched Palestinian vehicles
+                  in Deir Dibwan, seized harvested olives in Sinjil, and worked
+                  alongside soldiers who declared agricultural land a “closed
+                  military zone,” blocking farmers from their groves. These
+                  measures deepen a long-standing pattern in which olive trees — 
+                  a key symbol of Palestinian land and identity — are destroyed
+                  to pressure communities off their land (Al Jazeera, 2025).
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="https://www.aljazeera.com/news/2025/10/31/israeli-army-settlers-target-palestinian-olive-harvesters-in-west"
+                     target="_blank">
+                    Al Jazeera (2025), <em>“Israeli army, settlers target Palestinian olive harvesters in West Bank”</em>
+                  </a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: US sanctions Hilltop Youth (Magid 2024) with image slider -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <!-- IMAGE SLIDER FOR SANCTIONS CARD -->
+                <div class="incident-image-slider">
+                  <button class="image-nav image-prev" type="button">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous image</span>
+                  </button>
+
+                  <div class="incident-image-wrapper">
+                    <img src="img/4th-card-1.jpg"
+                         class="img-responsive slider-image active"
+                         alt="Israeli security forces and settlers at the entrance to Turmus Ayya on June 21, 2023">
+                    <img src="img/4th-card-2.jpg"
+                         class="img-responsive slider-image"
+                         alt="Burned homes and vehicles after settler rampage in Turmus Ayya, June 21, 2023">
+                    <img src="img/4th-card-3.jpg"
+                         class="img-responsive slider-image"
+                         alt="Armed settlers on a hill overlooking al-Mughayyir, April 13, 2024">
+                  </div>
+
+                  <button class="image-nav image-next" type="button">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next image</span>
+                  </button>
+                </div>
+
+                <h4 class="incident-card-title">
+                  US Sanctions “Hilltop Youth” as Violent Extremist Group
+                </h4>
+
+                <p class="incident-card-text">
+                  In October 2024, the United States sanctioned “Hilltop Youth,”
+                  treating the loosely organised settler activists as a violent
+                  extremist group responsible for attacks on Palestinians and
+                  clashes with Israeli security forces (Magid, 2024). The US
+                  Treasury described Hilltop Youth as carrying out killings, mass
+                  arson, and “price tag” rampages in towns such as al-Mughayyir
+                  and Turmus Ayya, where homes, vehicles, and livestock were
+                  torched and residents beaten. The move, alongside sanctions on
+                  individual settler leaders, signals growing international
+                  willingness to frame these networks as a serious source of
+                  destabilisation in the West Bank.
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="https://www.timesofisrael.com/us-sanctions-hilltop-youth-treating-extreme-settler-activists-as-organized-group/"
+                     target="_blank">
+                    Magid, J. (2024), <em>The Times of Israel</em>
+                  </a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 5: Demolition of Hilltop Youth Outposts (i24NEWS 2020) -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <img src="img/fifth-card.webp"
+                     class="img-responsive"
+                     alt="Young Israeli settlers gather belongings after demolition at the illegal Kumi Ori outpost, January 15, 2020">
+
+                <h4 class="incident-card-title">
+                  Demolition of Hilltop Youth Outposts, 2020
+                </h4>
+
+                <p class="incident-card-text">
+                  On January 15, 2020, Israeli forces demolished two illegal Hilltop Youth 
+                  structures in the Kumi Ori outpost near Yitzhar. One of the homes belonged 
+                  to Neria Zarog, a prominent Hilltop Youth activist who had previously been 
+                  removed under an IDF administrative order. Over 450 Border Police officers 
+                  and Civil Administration inspectors participated in the operation, which 
+                  sparked clashes as settler youths threw stones at security forces. The 
+                  demolition highlighted escalating tensions between extremist hilltop activists 
+                  and the Israeli state, even as the government simultaneously approved new 
+                  nature reserves across the West Bank (i24NEWS, 2020).
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="https://www.i24news.tv/en/news/israel/1579081948-israel-demolishes-two-hilltop-youth-outposts-in-west-bank"
+                     target="_blank">
+                    i24NEWS (2020), <em>“Israel demolishes two 'hilltop youth' outposts in West Bank”</em>
+                  </a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 6: Settler arson on warehouse and land (BBC 2025) with image slider -->
+          <div class="col-sm-6 col-md-4 incident-card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+                <!-- IMAGE SLIDER FOR BBC WAREHOUSE ATTACK CARD -->
+                <div class="incident-image-slider">
+                  <button class="image-nav image-prev" type="button">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous image</span>
+                  </button>
+
+                  <div class="incident-image-wrapper">
+                    <img src="img/6th-card-1.webp"
+                         class="img-responsive slider-image active"
+                         alt="Palestinian warehouse in Beit Lid with lorries set on fire by settlers">
+                    <img src="img/6th-card-2.webp"
+                         class="img-responsive slider-image"
+                         alt="Graphic illustrating record-high settler attacks in the West Bank">
+                    <img src="img/6th-card-3.webp"
+                         class="img-responsive slider-image"
+                         alt="Reuters photographer Raneen Sawafta injured during settler attack near Beita">
+                  </div>
+
+                  <button class="image-nav image-next" type="button">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next image</span>
+                  </button>
+                </div>
+
+                <h4 class="incident-card-title">
+                  Settler Arson on Warehouse and Farmland, 2025
+                </h4>
+
+                <p class="incident-card-text">
+                  In November 2025, BBC reporting documented a coordinated series of settler
+                  attacks in the northern West Bank, including arson at a Palestinian warehouse
+                  in Beit Lid where lorries were set on fire, as well as tents burned in the
+                  Bedouin community of Deir Sharaf (Knell, 2025). The UN’s humanitarian office
+                  noted that settler violence had reached its highest recorded levels since it
+                  began tracking incidents in 2006, with hundreds of attacks in a single month.
+                  During the same period, settlers also assaulted Palestinian olive harvesters,
+                  Israeli activists, and journalists, including Reuters photographer Raneen
+                  Sawafta, underscoring how Hilltop Youth–style networks target both local
+                  communities and those who attempt to document or resist the violence.
+                </p>
+
+                <p class="incident-card-source">
+                  Source:
+                  <a href="https://www.bbc.com/news/articles/c78zygz4xg9o"
+                     target="_blank">
+                    Knell, Y. (2025), <em>“Israeli settlers set fire to Palestinian warehouse and land as West Bank attacks surge”</em>, BBC
+                  </a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.incident-cards-row -->
+
+        <!-- Pagination dots -->
+        <div class="incident-pagination"></div>
+
+      </section>
+
     </div>
   </section>
 
+  <!-- FOOTER -->
   <div class="footer_wrapper">
     <div class="container">
       <div class="footer_bottom">
@@ -94,7 +461,181 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- INCIDENT CAROUSEL + IMAGE SLIDER JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // ===== Incident carousel (3 cards per "slide") =====
+      var cards = Array.prototype.slice.call(
+        document.querySelectorAll(".incident-card")
+      );
+      var visibleCount = 3;
+      var startIndex = 0;
+
+      var prevBtn = document.querySelector(".incident-prev");
+      var nextBtn = document.querySelector(".incident-next");
+      var paginationContainer = document.querySelector(".incident-pagination");
+
+      var totalPages = Math.ceil(cards.length / visibleCount);
+
+      function updateDots() {
+        if (!paginationContainer) return;
+        var dots = paginationContainer.querySelectorAll(".incident-dot");
+        var currentPage = Math.floor(startIndex / visibleCount);
+
+        for (var i = 0; i < dots.length; i++) {
+          if (i === currentPage) {
+            dots[i].classList.add("active");
+          } else {
+            dots[i].classList.remove("active");
+          }
+        }
+      }
+
+      function createDots() {
+        if (!paginationContainer) return;
+
+        paginationContainer.innerHTML = "";
+
+        if (totalPages <= 1) {
+          paginationContainer.style.display = "none";
+          return;
+        }
+
+        paginationContainer.style.display = "block";
+
+        for (var i = 0; i < totalPages; i++) {
+          var dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "incident-dot" + (i === 0 ? " active" : "");
+          dot.setAttribute("data-page", i.toString());
+          dot.addEventListener("click", function () {
+            var pageIndex = parseInt(this.getAttribute("data-page"), 10);
+            startIndex = pageIndex * visibleCount;
+            renderCards();
+          });
+          paginationContainer.appendChild(dot);
+        }
+      }
+
+      function renderCards(direction) {
+        if (!cards.length) return;
+
+        // hide all
+        cards.forEach(function (card) {
+          card.style.display = "none";
+        });
+
+        var endIndex = startIndex + visibleCount;
+        var slice = cards.slice(startIndex, endIndex);
+
+        slice.forEach(function (card) {
+          card.style.display = "block";
+          card.classList.remove("animated", "fadeInLeft", "fadeInRight", "fadeInUp");
+
+          if (direction === "next") {
+            card.classList.add("animated", "fadeInRight");
+          } else if (direction === "prev") {
+            card.classList.add("animated", "fadeInLeft");
+          } else {
+            card.classList.add("animated", "fadeInUp");
+          }
+        });
+
+        // if not enough cards to justify arrows, hide them
+        if (cards.length <= visibleCount) {
+          prevBtn.style.display = "none";
+          nextBtn.style.display = "none";
+        } else {
+          prevBtn.style.display = "block";
+          nextBtn.style.display = "block";
+        }
+
+        updateDots();
+      }
+
+      function moveNext() {
+        if (cards.length <= visibleCount) return;
+        startIndex += visibleCount;
+        if (startIndex >= cards.length) {
+          startIndex = 0;
+        }
+        renderCards("next");
+      }
+
+      function movePrev() {
+        if (cards.length <= visibleCount) return;
+        startIndex -= visibleCount;
+        if (startIndex < 0) {
+          var remainder = cards.length % visibleCount;
+          if (remainder === 0) {
+            startIndex = cards.length - visibleCount;
+          } else {
+            startIndex = cards.length - remainder;
+          }
+        }
+        renderCards("prev");
+      }
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", movePrev);
+        nextBtn.addEventListener("click", moveNext);
+      }
+
+      createDots();
+      renderCards();
+
+      // ===== Image slider inside each card =====
+      var sliders = document.querySelectorAll(".incident-image-slider");
+
+      sliders.forEach(function (slider) {
+        var images = slider.querySelectorAll(".slider-image");
+        if (!images.length) return;
+
+        var current = 0;
+
+        function showImage(index, direction) {
+          images.forEach(function (img, i) {
+            img.classList.remove("active", "animated", "fadeInLeft", "fadeInRight", "fadeInUp");
+            img.style.display = "none";
+
+            if (i === index) {
+              img.style.display = "block";
+              img.classList.add("active");
+              if (direction === "next") {
+                img.classList.add("animated", "fadeInRight");
+              } else if (direction === "prev") {
+                img.classList.add("animated", "fadeInLeft");
+              } else {
+                img.classList.add("animated", "fadeInUp");
+              }
+            }
+          });
+        }
+
+        var prevImageBtn = slider.querySelector(".image-prev");
+        var nextImageBtn = slider.querySelector(".image-next");
+
+        if (prevImageBtn) {
+          prevImageBtn.addEventListener("click", function () {
+            current = (current - 1 + images.length) % images.length;
+            showImage(current, "prev");
+          });
+        }
+
+        if (nextImageBtn) {
+          nextImageBtn.addEventListener("click", function () {
+            current = (current + 1) % images.length;
+            showImage(current, "next");
+          });
+        }
+
+        showImage(0);
+      });
+    });
+  </script>
 </body>
 </html>

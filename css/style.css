@@ -643,3 +643,414 @@ figure.effect-oscar:hover img {
   background: rgba(0,0,0,0.45); /* adjust opacity */
   z-index: 1;
 }
+
+/* ================= INCIDENT CAROUSEL (Activities page) ================= */
+
+.incident-carousel {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Keep cards centered and able to stretch wider on large screens */
+.incident-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center by default */
+}
+
+/* Let Bootstrap columns still control width,
+   but add a little spacing and rounding */
+.incident-card {
+  margin-bottom: 25px;
+}
+
+.incident-card .panel {
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.incident-card .panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
+}
+
+.incident-card img {
+  border-radius: 4px;
+}
+
+.incident-title {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.incident-text {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.incident-source {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 0;
+}
+
+.incident-source a {
+  color: #5c4b8a;
+  font-weight: bold;
+}
+
+.incident-source a:hover,
+.incident-source a:focus {
+  text-decoration: underline;
+}
+
+/* Navigation arrow buttons */
+
+.incident-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10, 21, 37, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  z-index: 2;
+}
+
+.incident-nav-btn span {
+  font-size: 18px;
+}
+
+.incident-nav-btn:hover:not(.disabled) {
+  background: #15ba57; /* tie in with your accent green if you like */
+  transform: translateY(-50%) scale(1.05);
+}
+
+.incident-nav-btn.disabled {
+  opacity: 0.35;
+  cursor: default;
+  box-shadow: none;
+}
+
+.incident-nav-prev {
+  left: -20px;
+}
+
+.incident-nav-next {
+  right: -20px;
+}
+
+/* On smaller screens, tuck arrows inside a bit */
+@media (max-width: 991px) {
+  .incident-nav-prev {
+    left: 0;
+  }
+  .incident-nav-next {
+    right: 0;
+  }
+}
+
+/* On very small screens, lower the buttons slightly so they don't overlap the header */
+@media (max-width: 768px) {
+  .incident-nav-btn {
+    top: 55%;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ================= SLIDE ANIMATIONS ================= */
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUpCards {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Classes added by JS when the slide changes */
+.card-animate-left {
+  animation: slideInFromRight 0.4s ease;
+}
+
+.card-animate-right {
+  animation: slideInFromLeft 0.4s ease;
+}
+
+.card-animate-up {
+  animation: fadeInUpCards 0.4s ease;
+}
+
+/* ================= INCIDENT CAROUSEL (Activities page) ================= */
+
+.incident-carousel {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.incident-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Row holding the cards */
+.incident-cards-row {
+  position: relative;
+}
+
+/* Each card container */
+.incident-card {
+  margin-bottom: 25px;
+}
+
+/* Give the panels some subtle elevation */
+.incident-card .panel {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.incident-card .panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+}
+
+/* Text styling inside cards */
+.incident-card-title {
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.incident-card-text {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.incident-card-source {
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Source links inside cards */
+.incident-card-source a {
+  color: #5c4b8a;
+  font-weight: 600;
+}
+
+.incident-card-source a:hover,
+.incident-card-source a:focus {
+  color: #3c2f63;
+  text-decoration: underline;
+}
+
+/* Left/right nav arrows for the INCIDENT SLIDER (3 cards per slide) */
+/* Make these look different from the small circular image-nav buttons */
+.incident-nav {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 36px;
+  border-radius: 999px; /* pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: rgba(10, 21, 37, 0.18); /* light translucent bar */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px); /* glassy effect on modern browsers */
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease,
+              border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.incident-prev {
+  left: -45px;
+}
+
+.incident-next {
+  right: -45px;
+}
+
+.incident-nav .glyphicon {
+  font-size: 18px;
+}
+
+.incident-nav:hover {
+  background: #15ba57;            /* solid accent green on hover */
+  border-color: #15ba57;
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Slightly dim when JS hides them with display:none, but layout stays fine */
+.incident-nav[style*="display: none"] {
+  opacity: 0;
+}
+
+/* Responsive tweaks so arrows don’t stick too far outside on smaller screens */
+@media (max-width: 991px) {
+  .incident-prev {
+    left: -20px;
+  }
+  .incident-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .incident-nav {
+    width: 48px;
+    height: 32px;
+    top: 50%;
+  }
+  .incident-prev {
+    left: -6px;
+  }
+  .incident-next {
+    right: -6px;
+  }
+}
+
+
+/* ================= IMAGE SLIDER INSIDE A SINGLE CARD ================= */
+
+.incident-image-slider {
+  position: relative;
+  margin-bottom: 12px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.incident-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+/* Stack all slider images in the same place; JS will hide/show */
+.slider-image {
+  display: none;
+}
+
+.slider-image.active {
+  display: block;
+}
+
+/* Left/right arrows over the image (for that card only) */
+.incident-image-slider .image-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10, 21, 37, 0.85);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0;
+  outline: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.incident-image-slider .image-prev {
+  left: 6px;
+}
+
+.incident-image-slider .image-next {
+  right: 6px;
+}
+
+.incident-image-slider .image-nav .glyphicon {
+  font-size: 14px;
+}
+
+.incident-image-slider .image-nav:hover {
+  background: #15ba57;
+  transform: translateY(-50%) scale(1.06);
+}
+
+/* Small screens: bring arrows slightly inward */
+@media (max-width: 480px) {
+  .incident-image-slider .image-prev {
+    left: 2px;
+  }
+  .incident-image-slider .image-next {
+    right: 2px;
+  }
+}
+
+  .incident-dots {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .incident-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    border-radius: 50%;
+    background-color: #bbb;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .incident-dot.active {
+    background-color: #333;
+  }
+
+  .incident-dot:hover {
+    background-color: #666;
+  }
