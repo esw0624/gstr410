@@ -13,32 +13,373 @@
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/animation.css">
 
+  <!-- Font Awesome for card icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Home-page-specific animations -->
+  <!-- Home-page-specific styles -->
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Hero animations */
     .home-hero .top_left_cont h1 {
       animation: fadeInDown 1s ease-out;
     }
 
-    .home-hero .btn-hero {
-      animation: fadeInUp 1s ease-out;
-      animation-delay: 0.3s;
-      animation-fill-mode: both;
+    /* Hero scroll-down button (same structure as Overview hero arrow) */
+    .hero_section {
+      position: relative;
+      padding-bottom: 80px; /* room for arrow */
     }
 
-    /* Pulse the button on hover using animate.css keyframes */
-    .home-hero .btn-hero:hover {
-      animation: pulse 0.8s;
+    .hero-scroll-btn {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      animation: heroArrowBounce 1.5s infinite;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
-    /* Intro section animation */
-    .home-intro {
-      animation: fadeInUp 1s ease-out;
-      animation-delay: 0.5s;
-      animation-fill-mode: both;
+    .hero-scroll-btn:hover {
+      background: rgba(0, 0, 0, 0.45);
+      border-color: #fff;
+      transform: translateX(-50%) translateY(2px);
+      text-decoration: none;
+    }
+
+    .hero-scroll-btn .glyphicon {
+      font-size: 18px;
+    }
+
+    @keyframes heroArrowBounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(6px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(3px);
+      }
+    }
+
+    /* Presentation “slide” on Home (same look as Overview presentation section) */
+    .home-presentation-section {
+      position: relative;
+      border-radius: 0;
+      padding: 60px 0 50px;
+      margin: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .home-presentation-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .home-presentation-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1170px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* Desert / hilltop gradient */
+    .home-presentation-section {
+      background:
+        linear-gradient(135deg, #fdf3d3 0%, #f5d9a5 32%, #e7b77b 65%, #c98d56 100%);
+    }
+
+    .home-presentation-section::before,
+    .home-presentation-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 70%);
+      opacity: 0.8;
+      animation: floatOrbs 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .home-presentation-section::before {
+      width: 260px;
+      height: 260px;
+      top: -90px;
+      right: -70px;
+    }
+
+    .home-presentation-section::after {
+      width: 300px;
+      height: 300px;
+      bottom: -120px;
+      left: -90px;
+      animation-delay: -6s;
+    }
+
+    @keyframes floatOrbs {
+      0%   { transform: translate3d(0, 0, 0); }
+      50%  { transform: translate3d(8px, -12px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* Section heading */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-heading h2 {
+      margin-top: 0;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    .section-heading h6 {
+      margin-top: 8px;
+      margin-bottom: 0;
+      font-size: 13px;
+    }
+
+    .home-presentation-section .section-heading h2,
+    .home-presentation-section .section-heading h6 {
+      color: #3f2b18;
+    }
+
+    .home-presentation-section .section-heading h6 {
+      opacity: 0.85;
+    }
+
+    /* Presentation cards */
+    .presentation-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      height: 100%;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(63, 43, 24, 0.08);
+      color: #3f2b18;
+    }
+
+    .presentation-card .panel-body {
+      padding: 20px 18px 22px;
+    }
+
+    .presentation-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(63, 43, 24, 0.35);
+    }
+
+    .presentation-icon {
+      width: 48px;
+      height: 48px;
+      line-height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: rgba(201, 141, 86, 0.15);
+    }
+
+    .presentation-icon .fa {
+      font-size: 22px;
+      color: #a5612d;
+    }
+
+    .presentation-card h4 {
+      margin-top: 5px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .presentation-teaser {
+      font-size: 13px;
+      color: rgba(63, 43, 24, 0.8);
+      margin-bottom: 0;
+    }
+
+    /* Overlay / zoomed view */
+    .presentation-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      padding: 20px;
+    }
+
+    .presentation-modal {
+      background: #ffffff;
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 10px;
+      padding: 32px 32px 26px;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.5);
+      position: relative;
+      animation: presentationZoomIn 0.25s ease-out;
+      border-top: 4px solid #5c4b8a;
+    }
+
+    .presentation-modal h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .presentation-modal p {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .presentation-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .presentation-modal-close:hover {
+      color: #000;
+    }
+
+    .modal-open-custom {
+      overflow: hidden;
+    }
+
+    @keyframes presentationZoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .presentation-chips {
+      margin-bottom: 16px;
+    }
+
+    .presentation-chip {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f1eefb;
+      color: #4b3d7a;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .presentation-section {
+      margin-bottom: 18px;
+    }
+
+    .presentation-section-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #5c4b8a;
+      margin-bottom: 6px;
+    }
+
+    .presentation-section p {
+      margin-bottom: 8px;
+    }
+
+    .presentation-list {
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .presentation-list li {
+      margin-bottom: 4px;
+    }
+
+    .presentation-highlight {
+      background: #f8f5ff;
+      border-left: 3px solid #5c4b8a;
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    /* Section nav wrapper + Learn More button under cards */
+    .section-nav-wrapper {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .section-nav-btn {
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-width: 1px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      background: #ffffff;
+      color: #3f2b18;
+      border-color: rgba(63, 43, 24, 0.2);
+    }
+
+    .section-nav-btn .fa {
+      margin-right: 6px;
+    }
+
+    .section-nav-btn:hover {
+      background: #f8efe3;
+      color: #3f2b18;
+    }
+
+    /* Responsive tweak */
+    @media (max-width: 768px) {
+      .home-presentation-section {
+        padding: 40px 0 40px;
+        min-height: 100vh;
+      }
+
+      .home-presentation-inner {
+        padding: 0 15px;
+      }
     }
   </style>
 </head>
@@ -91,28 +432,285 @@
       <div class="container hero_section">
         <div class="top_left_cont">
           <h1>HILLTOP YOUTH<br> MOVEMENT</h1>
-          <a href="overview.html" class="btn-hero">Learn More</a>
+
+          <!-- Down arrow: scrolls to presentation cards -->
+          <a href="#presentation-section" class="hero-scroll-btn">
+            <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- (Optional) a short intro below the hero -->
-  <!---<section class="page_section alabaster home-intro">
-    <div class="container">
-      <h2>Welcome</h2>
-      <h6>
-        An informative website project exploring the Hilltop Youth, their beliefs,
-        practices, and the wider debates surrounding them.
-      </h6>
-      <p>
-        Use the navigation above to move through the project. Each section
-        offers a focused look at a different dimension of the movement:
-        historical origins, ideology, everyday activities, and the research
-        sources behind this project.
-      </p>
+  <!-- ================= PRESENTATION CARDS SECTION (moved from Overview) ================= -->
+  <section id="presentation-section" class="home-presentation-section">
+    <div class="home-presentation-inner">
+
+      <div class="section-heading">
+        <h2>Presentation Highlights</h2>
+        <h6>
+          Click a card to open a slide-style view of each question for your class presentation.
+        </h6>
+      </div>
+
+      <div class="row animated fadeInUp" style="margin-bottom: 10px;">
+
+        <!-- CARD 1: What the Project Is -->
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center presentation-card"
+               data-presentation-title="What the Project Is">
+            <div class="panel-body">
+              <div class="presentation-icon">
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              </div>
+              <h4>What the Project Is</h4>
+              <p class="presentation-teaser">
+                Topic, research focus, question, and creative website.
+              </p>
+            </div>
+
+            <div class="presentation-full-content" style="display: none;">
+              <div class="presentation-chips">
+                <span class="presentation-chip">Topic</span>
+                <span class="presentation-chip">Research Focus</span>
+                <span class="presentation-chip">Question</span>
+                <span class="presentation-chip">Creative Project</span>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Research Topic</div>
+                <p>
+                  The Hilltop Youth, a radical Jewish nationalist youth movement based in informal outposts across the West Bank.
+                </p>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Research Focus</div>
+                <ul class="presentation-list">
+                  <li>Origins of the movement</li>
+                  <li>Core ideology and theological influences</li>
+                  <li>On-the-ground activities and tactics</li>
+                  <li>Political and religious structures that sustain them</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Guiding Research Question</div>
+                <div class="presentation-highlight">
+                  How does the Hilltop Youth movement represent contemporary religious extremism within Judaism, and what political, ideological, and social factors contribute to its persistence and influence in Israeli society?
+                </div>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Creative Project</div>
+                <p>
+                  An educational, research-based website that:
+                </p>
+                <ul class="presentation-list">
+                  <li>Explains the group’s history, worldview, and actions</li>
+                  <li>Organizes academic findings into accessible sections</li>
+                  <li>Uses visuals and layout to support learning and discussion</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: What I Learned -->
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center presentation-card"
+               data-presentation-title="What I Learned">
+            <div class="panel-body">
+              <div class="presentation-icon">
+                <i class="fa fa-book" aria-hidden="true"></i>
+              </div>
+              <h4>What I Learned</h4>
+              <p class="presentation-teaser">
+                Key insights about origins, ideology, activities, and impact.
+              </p>
+            </div>
+
+            <div class="presentation-full-content" style="display: none;">
+              <div class="presentation-chips">
+                <span class="presentation-chip">Origins</span>
+                <span class="presentation-chip">Ideology</span>
+                <span class="presentation-chip">Activities</span>
+                <span class="presentation-chip">Significance</span>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Origins</div>
+                <p>
+                  The Hilltop Youth emerged after the Gaza disengagement and intensifying settlement tensions, as young activists who increasingly rejected state authority, formal institutions, and mainstream settler leadership.
+                </p>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Ideology</div>
+                <ul class="presentation-list">
+                  <li>Blend of religious Zionism and neo-Kahanist ideas</li>
+                  <li>Strong emphasis on Jewish territorial maximalism</li>
+                  <li>Anti-modern, separatist identity that distances itself from wider Israeli society</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Activities</div>
+                <ul class="presentation-list">
+                  <li><em>Price-tag</em> attacks after demolitions or political decisions</li>
+                  <li>Outpost building on hilltops without formal authorization</li>
+                  <li>Confrontations with Palestinians and Israeli authorities</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Contemporary Significance</div>
+                <div class="presentation-highlight">
+                  International sanctions, growing media attention, and rising concern about settler extremism show that this youth movement has impacts far beyond its small numbers.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Why It Matters -->
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center presentation-card"
+               data-presentation-title="Why It Matters">
+            <div class="panel-body">
+              <div class="presentation-icon">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+              </div>
+              <h4>Why It Matters</h4>
+              <p class="presentation-teaser">
+                The significance and importance of this research project.
+              </p>
+            </div>
+
+            <div class="presentation-full-content" style="display: none;">
+              <div class="presentation-chips">
+                <span class="presentation-chip">Extremism</span>
+                <span class="presentation-chip">Youth</span>
+                <span class="presentation-chip">Global Patterns</span>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Overlooked Extremism</div>
+                <p>
+                  The project brings attention to forms of Jewish extremism that are often overshadowed by other kinds of terrorism and radicalization in media and public debate.
+                </p>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Religion &amp; Youth Rebellion</div>
+                <ul class="presentation-list">
+                  <li>Shows how religious ideas can motivate direct action on the ground</li>
+                  <li>Highlights the role of youth identity, autonomy, and defiance of authority</li>
+                  <li>Illustrates how “fringe” groups can still influence broader conversations</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">From Local Case to Global Lens</div>
+                <p>
+                  The Hilltop Youth offer a focused case that helps us think about:
+                </p>
+                <ul class="presentation-list">
+                  <li>Vigilantism and private violence in contested spaces</li>
+                  <li>How states respond to extremist actors from within their own majority</li>
+                  <li>Patterns that echo in other religious and nationalist movements worldwide</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-highlight">
+                  Understanding this movement encourages a more nuanced, comparative view of extremism across different religions, regions, and political contexts.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: How It Connects to My Creative Project -->
+        <div class="col-sm-3">
+          <div class="panel panel-default text-center presentation-card"
+               data-presentation-title="How It Connects to My Creative Project">
+            <div class="panel-body">
+              <div class="presentation-icon">
+                <i class="fa fa-desktop" aria-hidden="true"></i>
+              </div>
+              <h4>How It Connects to My Creative Project</h4>
+              <p class="presentation-teaser">
+                How the website turns research into a teaching tool.
+              </p>
+            </div>
+
+            <div class="presentation-full-content" style="display: none;">
+              <div class="presentation-chips">
+                <span class="presentation-chip">Structure</span>
+                <span class="presentation-chip">Design</span>
+                <span class="presentation-chip">Audience</span>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Organizing the Research</div>
+                <p>
+                  The website translates academic research into a clear, guided experience, turning chapters and articles into:
+                </p>
+                <ul class="presentation-list">
+                  <li>Overview and context</li>
+                  <li>Origins and historical background</li>
+                  <li>Ideology and theology</li>
+                  <li>Activities and documented incidents</li>
+                  <li>Sources and further reading</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">Visual &amp; Textual Design</div>
+                <p>
+                  Layout, imagery, and sectioning are chosen to:
+                </p>
+                <ul class="presentation-list">
+                  <li>Break down a sensitive topic into manageable pieces</li>
+                  <li>Pair strong visuals with careful, sourced explanation</li>
+                  <li>Encourage critical thinking instead of simple “good vs. bad” narratives</li>
+                </ul>
+              </div>
+
+              <div class="presentation-section">
+                <div class="presentation-section-title">From Paper to Public Resource</div>
+                <div class="presentation-highlight">
+                  The creative project is not just a summary of a research paper—it is a teaching tool designed to spark informed conversation among students, educators, and anyone trying to understand this movement more deeply.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.row -->
+
+      <!-- Learn More button moved here, under the cards -->
+      <div class="section-nav-wrapper">
+        <a href="overview.html" class="btn section-nav-btn">
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          Learn More in Overview
+        </a>
+      </div>
+
     </div>
-  </section>-->
+  </section>
+
+  <!-- ============== OVERLAY MODAL FOR PRESENTATION CARDS ============== -->
+  <div class="presentation-overlay" id="presentation-overlay" aria-hidden="true">
+    <div class="presentation-modal" role="dialog" aria-modal="true" aria-labelledby="presentation-modal-title">
+      <button type="button" class="presentation-modal-close" id="presentation-modal-close" aria-label="Close">
+        &times;
+      </button>
+      <h3 id="presentation-modal-title"></h3>
+      <div id="presentation-modal-body"></div>
+    </div>
+  </div>
 
   <!-- ================= FOOTER ================= -->
   <div class="footer_wrapper">
@@ -126,5 +724,95 @@
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var cards = document.querySelectorAll(".presentation-card");
+      var overlay = document.getElementById("presentation-overlay");
+      var modalTitle = document.getElementById("presentation-modal-title");
+      var modalBody = document.getElementById("presentation-modal-body");
+      var closeBtn = document.getElementById("presentation-modal-close");
+
+      function openModal(title, contentHtml) {
+        modalTitle.textContent = title;
+        modalBody.innerHTML = contentHtml;
+        overlay.style.display = "flex";
+        document.body.classList.add("modal-open-custom");
+        overlay.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal() {
+        overlay.style.display = "none";
+        document.body.classList.remove("modal-open-custom");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      cards.forEach(function (card) {
+        card.addEventListener("click", function () {
+          var title = card.getAttribute("data-presentation-title") || "";
+          var contentEl = card.querySelector(".presentation-full-content");
+          var html = contentEl ? contentEl.innerHTML : "";
+          openModal(title, html);
+        });
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeModal();
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && overlay.style.display === "flex") {
+          closeModal();
+        }
+      });
+
+      // Hero arrow smooth scroll
+      function scrollToTarget(targetSelector) {
+        var target = document.querySelector(targetSelector);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      var heroScrollBtn = document.querySelector(".hero-scroll-btn");
+      if (heroScrollBtn) {
+        heroScrollBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          var href = heroScrollBtn.getAttribute("href");
+          if (href) {
+            scrollToTarget(href);
+          }
+        });
+      }
+
+      // Fade-in for presentation section
+      var presentationSection = document.querySelector(".home-presentation-section");
+      if ("IntersectionObserver" in window && presentationSection) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        observer.observe(presentationSection);
+      } else if (presentationSection) {
+        presentationSection.classList.add("visible");
+      }
+    });
+  </script>
 </body>
 </html>
