@@ -16,6 +16,215 @@
 
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /* Origins main section background + spacing */
+    .origins-section {
+      padding: 60px 0 70px;
+      background:
+        linear-gradient(135deg, #f7f5ff 0%, #f0f4ff 35%, #f7f9fb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Soft floating orbs in the background */
+    .origins-section::before,
+    .origins-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(92, 75, 138, 0.18), transparent 70%);
+      pointer-events: none;
+      animation: originsFloat 22s linear infinite;
+    }
+
+    .origins-section::before {
+      width: 260px;
+      height: 260px;
+      top: -90px;
+      right: -80px;
+    }
+
+    .origins-section::after {
+      width: 220px;
+      height: 220px;
+      bottom: -80px;
+      left: -70px;
+      animation-direction: reverse;
+    }
+
+    @keyframes originsFloat {
+      0%   { transform: translate3d(0, 0, 0); opacity: 0.8; }
+      50%  { transform: translate3d(12px, -10px, 0); opacity: 1; }
+      100% { transform: translate3d(0, 0, 0); opacity: 0.8; }
+    }
+
+    /* Section header */
+    .origins-header {
+      text-align: center;
+      margin-bottom: 35px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .origins-header h2 {
+      margin-top: 0;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 30px;
+      color: #222;
+    }
+
+    .origins-header h6 {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #555;
+      opacity: 0.85;
+    }
+
+    .origins-tagline {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #6b5a94;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Timeline layout */
+    .origins-timeline {
+      position: relative;
+      padding-left: 10px;
+      margin: 0 auto;
+      max-width: 900px;
+      z-index: 1;
+    }
+
+    .origins-timeline::before {
+      content: "";
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(
+        to bottom,
+        rgba(92, 75, 138, 0.05),
+        rgba(92, 75, 138, 0.45)
+      );
+    }
+
+    .origin-step {
+      position: relative;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .origin-step:last-child {
+      margin-bottom: 0;
+    }
+
+    .origin-step-dot {
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      border: 2px solid rgba(92, 75, 138, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 18px;
+      color: #5c4b8a;
+      font-size: 18px;
+    }
+
+    .origin-step-dot i {
+      line-height: 1;
+    }
+
+    .origin-step-content {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 14px 18px 14px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      border-left: 4px solid rgba(92, 75, 138, 0.55);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      width: 100%;
+    }
+
+    .origin-step:hover .origin-step-content {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+      border-color: #c98d56;
+    }
+
+    .origin-step-label {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9a8bd1;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .origin-step-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 6px;
+      color: #2a213f;
+    }
+
+    .origin-step-content p {
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .origin-step-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Scroll-in animation helper */
+    .origin-animate {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .origin-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .origins-section {
+        padding: 40px 0 50px;
+      }
+
+      .origins-timeline::before {
+        left: 26px;
+      }
+
+      .origin-step-dot {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        margin-right: 14px;
+      }
+
+      .origin-step-content {
+        padding: 12px 14px 12px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -77,34 +286,106 @@
     </div>
   </div>
 
-  <!-- ============== MAIN CONTENT ============== -->
+  <!-- ============== MAIN CONTENT (interactive timeline) ============== -->
   <section class="page_section origins-section">
     <div class="container">
-      <h2>Historical and Social Roots</h2>
-      <h6>How geography, politics, and religious settler culture converged.</h6>
-      <p>
-        The origins of the Hilltop Youth can be traced to the shifting political and territorial climate of the late 1990s and early 2000s. A frequently cited moment illustrating the urgency surrounding West Bank settlement expansion occurred in 1998, when then–Defense Minister Ariel Sharon urged settlers to seize undeveloped hilltops before any future negotiations could limit Israeli control. As he stated, “Everyone that’s there should move, should run, should grab more hills, expand the territory. Everything that’s grabbed will be in our hands. Everything we don’t grab will be in their hands.” (as cited in Smith, 2003, p. 6). Although Sharon’s call was directed broadly at settlement activists, this competitive, land-driven logic later influenced more radical youth circles.
-      </p>
 
-      <p>
-        The Hilltop Youth emerged in the early 2000s as a distinct faction within the broader settler movement. Their formation was deeply shaped by disillusionment after the Israeli government dismantled settlements during the 2005 Gaza disengagement. Many young settlers who had grown up in religious Zionist communities felt betrayed by what they saw as the state’s willingness to relinquish land they viewed as sacred and historically theirs (Garcia-Navarro, 2012). This sense of abandonment sparked a generational shift, instead of relying on established settler leadership or political processes, these youths began to act independently.
-      </p>
+      <div class="origins-header origin-animate">
+        <h2>Historical and Social Roots</h2>
+        <h6>How geography, politics, and religious settler culture converged.</h6>
+        <div class="origins-tagline">
+          Follow the timeline to see how disillusioned settler youth became a named movement.
+        </div>
+      </div>
 
-      <p>
-        A defining feature of the movement’s early development was the establishment of unauthorized outposts on remote West Bank hilltops. These informal settlements erected without government permits and often in defiance of Israeli law became physical and symbolic spaces where young activists could assert autonomy and challenge state authority. Tzfadia (2017) describes these outposts as “gray spaces,” functioning outside formal structures and allowing youth to experiment with alternative forms of community, belonging, and territorial activism.
-      </p>
+      <div class="origins-timeline">
 
-      <p>
-        By the mid-2000s and early 2010s, members of this emerging movement increasingly engaged in direct actions meant to signal defiance against both Palestinians and Israeli authorities. Early “price-tag” incidents—acts of vandalism, arson, and property damage carried out in retaliation for outpost demolitions or Palestinian attacks—became a recognizable tactic within these circles (Byman & Sachs, 2012). Journalistic reporting from this period documents how some members began targeting Israeli military bases as well, marking a shift toward open confrontation with the state (Garcia-Navarro, 2012).
-      </p>
+        <!-- Step 1 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-flag" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">Late 1990s</div>
+            <h3 class="origin-step-title">Land Rush Logic in the West Bank</h3>
+            <p>
+              The origins of the Hilltop Youth can be traced to the shifting political and territorial climate of the late 1990s and early 2000s. A frequently cited moment illustrating the urgency surrounding West Bank settlement expansion occurred in 1998, when then–Defense Minister Ariel Sharon urged settlers to seize undeveloped hilltops before any future negotiations could limit Israeli control. As he stated, “Everyone that’s there should move, should run, should grab more hills, expand the territory. Everything that’s grabbed will be in our hands. Everything we don’t grab will be in their hands.” (as cited in Smith, 2003, p. 6). Although Sharon’s call was directed broadly at settlement activists, this competitive, land-driven logic later influenced more radical youth circles.
+            </p>
+          </div>
+        </div>
 
-      <p>
-        Government responses in the early years were inconsistent. Some Israeli officials condemned the youth as destabilizing forces, while others hesitated to intervene aggressively due to political sensitivities surrounding the settler movement. Security analysts argue that this uneven enforcement created the conditions that allowed the Hilltop Youth to grow into a more emboldened and recognizable group (Fiennes, 2025).
-      </p>
+        <!-- Step 2 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-bolt" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">Early 2000s</div>
+            <h3 class="origin-step-title">Disillusionment and a Generational Break</h3>
+            <p>
+              The Hilltop Youth emerged in the early 2000s as a distinct faction within the broader settler movement. Their formation was deeply shaped by disillusionment after the Israeli government dismantled settlements during the 2005 Gaza disengagement. Many young settlers who had grown up in religious Zionist communities felt betrayed by what they saw as the state’s willingness to relinquish land they viewed as sacred and historically theirs (Garcia-Navarro, 2012). This sense of abandonment sparked a generational shift; instead of relying on established settler leadership or political processes, these youths began to act independently.
+            </p>
+          </div>
+        </div>
 
-      <p>
-        By the mid-2010s, the Hilltop Youth had fully crystallized as a named movement, known for their presence in illegal outposts, their confrontational activism, and their willingness to operate outside both state structures and mainstream settler leadership (Garcia-Navarro, 2012; Byman & Sachs, 2012; Tzfadia, 2017). Their development from small clusters of disaffected youths into a widely recognized movement laid the foundation for the ideological and tactical positions that would later define them (Fiennes, 2025; Al Jazeera, 2018).
-      </p>
+        <!-- Step 3 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">Early Outposts</div>
+            <h3 class="origin-step-title">Remote Hilltops as “Gray Spaces”</h3>
+            <p>
+              A defining feature of the movement’s early development was the establishment of unauthorized outposts on remote West Bank hilltops. These informal settlements, erected without government permits and often in defiance of Israeli law, became physical and symbolic spaces where young activists could assert autonomy and challenge state authority. Tzfadia (2017) describes these outposts as “gray spaces,” functioning outside formal structures and allowing youth to experiment with alternative forms of community, belonging, and territorial activism.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-fire" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">Mid-2000s–2010s</div>
+            <h3 class="origin-step-title">From Outposts to “Price-Tag” Attacks</h3>
+            <p>
+              By the mid-2000s and early 2010s, members of this emerging movement increasingly engaged in direct actions meant to signal defiance against both Palestinians and Israeli authorities. Early “price-tag” incidents—acts of vandalism, arson, and property damage carried out in retaliation for outpost demolitions or Palestinian attacks—became a recognizable tactic within these circles (Byman &amp; Sachs, 2012). Journalistic reporting from this period documents how some members began targeting Israeli military bases as well, marking a shift toward open confrontation with the state (Garcia-Navarro, 2012).
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">State Response</div>
+            <h3 class="origin-step-title">Uneven Enforcement and Space to Grow</h3>
+            <p>
+              Government responses in the early years were inconsistent. Some Israeli officials condemned the youth as destabilizing forces, while others hesitated to intervene aggressively due to political sensitivities surrounding the settler movement. Security analysts argue that this uneven enforcement created the conditions that allowed the Hilltop Youth to grow into a more emboldened and recognizable group (Fiennes, 2025).
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="origin-step origin-animate">
+          <div class="origin-step-dot">
+            <i class="fa fa-users" aria-hidden="true"></i>
+          </div>
+          <div class="origin-step-content">
+            <div class="origin-step-label">Mid-2010s Onward</div>
+            <h3 class="origin-step-title">From Disaffected Youth to Named Movement</h3>
+            <p>
+              By the mid-2010s, the Hilltop Youth had fully crystallized as a named movement, known for their presence in illegal outposts, their confrontational activism, and their willingness to operate outside both state structures and mainstream settler leadership (Garcia-Navarro, 2012; Byman &amp; Sachs, 2012; Tzfadia, 2017). Their development from small clusters of disaffected youths into a widely recognized movement laid the foundation for the ideological and tactical positions that would later define them (Fiennes, 2025; Al Jazeera, 2018).
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /.origins-timeline -->
+
     </div>
   </section>
 
@@ -120,6 +401,33 @@
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    // Scroll-in animation for origins timeline pieces
+    document.addEventListener("DOMContentLoaded", function () {
+      var animatedBlocks = document.querySelectorAll(".origin-animate");
+
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        animatedBlocks.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback for older browsers: just show everything
+        animatedBlocks.forEach(function (el) {
+          el.classList.add("visible");
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>

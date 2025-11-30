@@ -13,8 +13,256 @@
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/animation.css">
 
+  <!-- Local Font Awesome (for icons in the rail) -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-specific styling -->
+  <style>
+    /* Overall section background */
+    .ideology-section {
+      padding: 60px 0 80px;
+      background:
+        radial-gradient(circle at top left, #f7f5ff 0, #f7f5ff 40%, #f3f7ff 90%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Soft floating shapes in background */
+    .ideology-section::before,
+    .ideology-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+
+    .ideology-section::before {
+      width: 260px;
+      height: 260px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(92, 75, 138, 0.25), transparent 60%);
+      animation: floatOrb1 22s linear infinite;
+    }
+
+    .ideology-section::after {
+      width: 320px;
+      height: 320px;
+      bottom: -150px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(201, 141, 86, 0.25), transparent 60%);
+      animation: floatOrb2 26s linear infinite reverse;
+    }
+
+    @keyframes floatOrb1 {
+      0%   { transform: translate3d(0, 0, 0); }
+      50%  { transform: translate3d(10px, 18px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    @keyframes floatOrb2 {
+      0%   { transform: translate3d(0, 0, 0); }
+      50%  { transform: translate3d(-14px, -12px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    /* Section intro heading */
+    .ideology-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ideology-section-header h2 {
+      margin-top: 0;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 22px;
+      color: #2b2540;
+    }
+
+    .ideology-section-header h6 {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .ideology-tagline {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(92, 75, 138, 0.08);
+      color: #5c4b8a;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Layout: left “ideology map” + right cards */
+    .ideology-layout {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Left rail */
+    .ideology-rail {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 14px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+      border-left: 4px solid #5c4b8a;
+      position: relative;
+    }
+
+    .ideology-rail-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: #5c4b8a;
+      margin-bottom: 10px;
+    }
+
+    .ideology-rail-subtitle {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 14px;
+    }
+
+    .ideology-rail-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .ideology-rail-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #333;
+      cursor: default;
+    }
+
+    .ideology-step-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #5c4b8a;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    .ideology-rail-list li span {
+      flex: 1;
+    }
+
+    .ideology-rail-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #777;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      padding-top: 8px;
+    }
+
+    /* Right column: animated cards */
+    .ideology-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 18px 20px 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #d1c8ff;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .ideology-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ideology-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    .ideology-card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .ideology-card-chip {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f1eefb;
+      color: #4b3d7a;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 8px;
+    }
+
+    .ideology-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+      color: #2b2540;
+    }
+
+    .ideology-card-body p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .ideology-key-points {
+      padding-left: 18px;
+      margin: 6px 0;
+      font-size: 13px;
+    }
+
+    .ideology-key-points li {
+      margin-bottom: 4px;
+    }
+
+    .ideology-quote {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-left: 3px solid #5c4b8a;
+      background: #f8f6ff;
+      font-size: 13px;
+      color: #444;
+      border-radius: 4px;
+    }
+
+    /* Small screen tweak */
+    @media (max-width: 991px) {
+      .ideology-rail {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -72,34 +320,158 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <section class="page_section alabaster">
+  <!-- MAIN CONTENT: IDEOLOGY EXPLORER -->
+  <section class="page_section ideology-section">
     <div class="container">
-      <h2>Core Beliefs and Frames</h2>
-      <h6>How the Hilltop Youth explain their actions to themselves and others.</h6>
-      <p>
-        The ideology of the Hilltop Youth is shaped by a combination of radical religious nationalism, separatist identity, and theological justifications for territorial expansion. At the core of their worldview is the belief that Jewish settlement across the biblical land of Israel is a divine obligation that overrides the authority of the modern Israeli state. This perspective diverges sharply from mainstream religious Zionism, which traditionally emphasized partnership between Jewish law and state institutions. Scholars of religious Zionism note that internal debates over land, statehood, and divine covenant have long produced both moderate and extremist interpretations of Jewish nationalism (E. F. et al., 1994). The Hilltop Youth align themselves with the more absolutist strain, rejecting compromise and viewing territorial withdrawal as a violation of sacred duty.
-      </p>
 
-      <p>
-        A central ideological influence on the movement is Kahanism, the doctrine of Rabbi Meir Kahane. Kahane promoted an uncompromising vision of Jewish sovereignty, advocating for territorial maximalism and the expulsion of Palestinians. Although Kahane’s political party was banned and his organizations outlawed, his ideas evolved into what scholars term “neo-Kahanism,” a diffuse ideological current that continues to shape extremist settler groups today. Magid (2021) shows how these ideas circulate among settler youth, influencing groups such as the Hilltop Youth, Lahava, and Derech Chaim. Through this lens, coexistence is rejected, Palestinians are framed as existential threats, and the Land of Israel is regarded as an exclusive, non-negotiable inheritance.
-      </p>
+      <!-- Section intro -->
+      <div class="ideology-section-header">
+        <h2>Core Beliefs &amp; Frames</h2>
+        <h6>Steps of how the Hilltop Youth build and live out their worldview.</h6>
+        <div class="ideology-tagline">
+          Layered beliefs &middot; Lived practices &middot; Justifications
+        </div>
+      </div>
 
-      <p>
-        The group’s ideology is reinforced by the teachings of figures such as Rabbi Yitzchak Ginsburgh, whose mystical interpretations of the Jewish tradition have been associated with justifications for retaliation and “righteous revenge.” Satherley (2013) documents how Ginsburgh’s Kabbalistic writings, such as interpretations in Barukh HaGever and Torat HaMelekh appear to sanctify spontaneous acts of violence by the “simple Jew,” framing such actions as expressions of divine indignation. These teachings resonate with the Hilltop Youth’s self-image as spiritually driven actors engaged in a cosmic struggle for Jewish redemption and territorial fulfillment.
-      </p>
+      <div class="row ideology-layout">
+        <!-- Left rail: quick map -->
+        <div class="col-md-4">
+          <div class="ideology-rail">
+            <div class="ideology-rail-title">
+              Ideology Map
+            </div>
+            <div class="ideology-rail-subtitle">
+              Key layers of belief shaping the Hilltop Youth worldview
+            </div>
+            <ul class="ideology-rail-list">
+              <li>
+                <div class="ideology-step-badge">1</div>
+                <span>Divine obligation &amp; sacred land</span>
+              </li>
+              <li>
+                <div class="ideology-step-badge">2</div>
+                <span>Kahanism &amp; neo-Kahanist currents</span>
+              </li>
+              <li>
+                <div class="ideology-step-badge">3</div>
+                <span>Mystical justifications for violence</span>
+              </li>
+              <li>
+                <div class="ideology-step-badge">4</div>
+                <span>Comparisons with other extremist movements</span>
+              </li>
+              <li>
+                <div class="ideology-step-badge">5</div>
+                <span>Digital resistance &amp; separation from society</span>
+              </li>
+              <li>
+                <div class="ideology-step-badge">6</div>
+                <span>Confrontation with Palestinians &amp; the state</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-      <p>
-        Comparative research further reveals that the Hilltop Youth share characteristics with other global religious extremist movements. Alshech et al. (2020) note that although the Hilltop Youth’s theology differs drastically from Salafi-jihadism, both movements exhibit similar patterns: belief in divine mission, rejection of secular authority, emphasis on purity, and a sense of chosen identity. However, internal Jewish legal norms restrain the Hilltop Youth from committing mass killings, leading instead to patterns of vandalism, arson, and symbolic violence. These ideological constraints explain why the group’s actions are often destructive but not typically lethal.
-      </p>
+        <!-- Right column: animated cards -->
+        <div class="col-md-8">
 
-      <p>
-        The group’s ideological separation from mainstream society also manifests in their attitude toward technology and digital culture. Rosenberg and Vogelman-Natan (2023) describe how the Hilltop Youth cultivate a form of “digital resistance,” limiting their use of smartphones and social networks as an intentional rejection of modernity. This distancing reinforces their insular identity and strengthens their belief that they embody a purer and more authentic form of religious commitment than other sectors of Israeli society.
-      </p>
+          <!-- Card 1 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 1</span>
+              <h3 class="ideology-card-title">Divine obligation over state authority</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                The ideology of the Hilltop Youth is shaped by a combination of radical religious nationalism, separatist identity, and theological justifications for territorial expansion. At the core of their worldview is the belief that Jewish settlement across the biblical land of Israel is a divine obligation that overrides the authority of the modern Israeli state. This perspective diverges sharply from mainstream religious Zionism, which traditionally emphasized partnership between Jewish law and state institutions. Scholars of religious Zionism note that internal debates over land, statehood, and divine covenant have long produced both moderate and extremist interpretations of Jewish nationalism (E. F. et al., 1994). The Hilltop Youth align themselves with the more absolutist strain, rejecting compromise and viewing territorial withdrawal as a violation of sacred duty.
+              </p>
+            </div>
+          </article>
 
-      <p>
-        The Hilltop Youth’s ideology is shaped by a confrontational approach to both Palestinians and the Israeli state. As documented in early journalism, members have framed clashes with the IDF, attacks on Palestinian villages, and retaliation for outpost demolitions as part of a broader struggle to defend the land and resist government policies they view as illegitimate (Garcia-Navarro, 2012; Holcman, 2025). Their worldview positions them as a vanguard of Jewish destiny—acting independently of state institutions to reclaim land, challenge perceived threats, and assert a uncompromising vision of Jewish sovereignty.
-      </p>
+          <!-- Card 2 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 2</span>
+              <h3 class="ideology-card-title">Kahanism and “neo-Kahanist” influence</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                A central ideological influence on the movement is Kahanism, the doctrine of Rabbi Meir Kahane. Kahane promoted an uncompromising vision of Jewish sovereignty, advocating for territorial maximalism and the expulsion of Palestinians. Although Kahane’s political party was banned and his organizations outlawed, his ideas evolved into what scholars term “neo-Kahanism,” a diffuse ideological current that continues to shape extremist settler groups today. Magid (2021) shows how these ideas circulate among settler youth, influencing groups such as the Hilltop Youth, Lahava, and Derech Chaim.
+              </p>
+              <ul class="ideology-key-points">
+                <li>Coexistence is rejected as naive or dangerous.</li>
+                <li>Palestinians are framed as existential threats.</li>
+                <li>The Land of Israel is described as non-negotiable inheritance.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 3</span>
+              <h3 class="ideology-card-title">Mystical justifications and “righteous revenge”</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                The group’s ideology is reinforced by the teachings of figures such as Rabbi Yitzchak Ginsburgh, whose mystical interpretations of the Jewish tradition have been associated with justifications for retaliation and “righteous revenge.” Satherley (2013) documents how Ginsburgh’s Kabbalistic writings, such as interpretations in <em>Barukh HaGever</em> and <em>Torat HaMelekh</em> appear to sanctify spontaneous acts of violence by the “simple Jew,” framing such actions as expressions of divine indignation.
+              </p>
+              <div class="ideology-quote">
+                These teachings resonate with the Hilltop Youth’s self-image as spiritually driven actors engaged in a cosmic struggle for Jewish redemption and territorial fulfillment.
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 4</span>
+              <h3 class="ideology-card-title">Parallels with other extremist movements</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                Comparative research further reveals that the Hilltop Youth share characteristics with other global religious extremist movements. Alshech et al. (2020) note that although the Hilltop Youth’s theology differs drastically from Salafi-jihadism, both movements exhibit similar patterns: belief in divine mission, rejection of secular authority, emphasis on purity, and a sense of chosen identity.
+              </p>
+              <p>
+                However, internal Jewish legal norms restrain the Hilltop Youth from committing mass killings, leading instead to patterns of vandalism, arson, and symbolic violence. These ideological constraints explain why the group’s actions are often destructive but not typically lethal.
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 5</span>
+              <h3 class="ideology-card-title">Digital resistance and separation from society</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                The group’s ideological separation from mainstream society also manifests in their attitude toward technology and digital culture. Rosenberg and Vogelman-Natan (2023) describe how the Hilltop Youth cultivate a form of “digital resistance,” limiting their use of smartphones and social networks as an intentional rejection of modernity.
+              </p>
+              <p>
+                This distancing reinforces their insular identity and strengthens their belief that they embody a purer and more authentic form of religious commitment than other sectors of Israeli society.
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="ideology-card">
+            <div class="ideology-card-header">
+              <span class="ideology-card-chip">Layer 6</span>
+              <h3 class="ideology-card-title">Confrontation with Palestinians and the Israeli state</h3>
+            </div>
+            <div class="ideology-card-body">
+              <p>
+                The Hilltop Youth’s ideology is shaped by a confrontational approach to both Palestinians and the Israeli state. As documented in early journalism, members have framed clashes with the IDF, attacks on Palestinian villages, and retaliation for outpost demolitions as part of a broader struggle to defend the land and resist government policies they view as illegitimate (Garcia-Navarro, 2012; Holcman, 2025).
+              </p>
+              <div class="ideology-quote">
+                Their worldview positions them as a vanguard of Jewish destiny—acting independently of state institutions to reclaim land, challenge perceived threats, and assert an uncompromising vision of Jewish sovereignty.
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </div>
   </section>
 
@@ -115,5 +487,32 @@
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <script>
+    // Simple scroll-in animation for ideology cards
+    document.addEventListener("DOMContentLoaded", function () {
+      var cards = document.querySelectorAll(".ideology-card");
+
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        cards.forEach(function (card) {
+          observer.observe(card);
+        });
+      } else {
+        // Fallback: show all if IntersectionObserver not supported
+        cards.forEach(function (card) {
+          card.classList.add("visible");
+        });
+      }
+    });
+  </script>
 </body>
 </html>

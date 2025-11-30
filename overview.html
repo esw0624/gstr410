@@ -90,6 +90,15 @@
       }
     }
 
+    /* ------------ Multi-page wrapper (Overview page 1 & 2) ------------ */
+    .overview-page {
+      display: none;
+    }
+
+    .overview-page.active {
+      display: block;
+    }
+
     /* ------------ Slide-like sub-sections ------------ */
     .overview-subsection {
       position: relative;
@@ -100,7 +109,8 @@
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      min-height: 100vh;
+      /* LESS extra height to avoid big empty gaps on this page */
+      min-height: auto;
       display: flex;
       align-items: center;
     }
@@ -166,13 +176,13 @@
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      font-size: 20px;
+      font-size: 32px;
     }
 
     .section-heading h6 {
       margin-top: 8px;
       margin-bottom: 0;
-      font-size: 13px;
+      font-size: 16px;
     }
 
     .overview-subsection--intro .section-heading h2 {
@@ -182,6 +192,41 @@
     .overview-subsection--intro .section-heading h6 {
       color: #444;
       opacity: 0.75;
+    }
+
+    /* Inner “card” around the main content to reduce empty space and feel more interactive */
+    .overview-content-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px 24px 26px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    .overview-content-card .nav-pills {
+      margin-bottom: 20px;
+    }
+
+    .overview-content-card .tab-content {
+      padding-top: 8px;
+    }
+
+    .overview-highlight {
+      border-left: 4px solid #5c4b8a;
+      background: #f3f0ff;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .overview-keyline {
+      width: 56px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #5c4b8a, #c98d56);
+      margin: 14px auto 6px;
     }
 
     .tab-nav-overview > li > a {
@@ -211,12 +256,144 @@
     @media (max-width: 768px) {
       .overview-subsection {
         padding: 40px 0 40px;
-        min-height: 100vh;
+        min-height: auto;
+        align-items: flex-start;
       }
 
       .overview-subsection-inner {
         padding: 0 15px;
       }
+    }
+
+    /* ===== Documentary thumbnail animation ===== */
+    .overview-subsection--documentary {
+      background: #f7f7f7;
+    }
+
+    #documentary-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-thumb-wrapper {
+      position: relative;
+      display: inline-block;
+      padding: 6px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at top left, rgba(92, 75, 138, 0.30), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(201, 141, 86, 0.35), transparent 55%);
+      animation: docGlow 4s ease-in-out infinite alternate;
+    }
+
+    .doc-thumb-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 22px rgba(92, 75, 138, 0.55);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .doc-thumbnail-img {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .doc-thumb-wrapper:hover .doc-thumbnail-img {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Optional upgrade: animated play button overlay */
+    .doc-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 28px;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+      pointer-events: none; /* click goes through to the link */
+      animation: playPulse 1.8s ease-out infinite;
+    }
+
+    @keyframes docGlow {
+      0% {
+        box-shadow: 0 0 0 rgba(92, 75, 138, 0.0);
+      }
+      100% {
+        box-shadow: 0 0 30px rgba(92, 75, 138, 0.6);
+      }
+    }
+
+    @keyframes playPulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.9;
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.9;
+      }
+    }
+
+    /* ===== Pagination controls (like Activities) ===== */
+    .overview-pagination {
+      text-align: center;
+      padding: 20px 0 30px;
+    }
+
+    .overview-page-indicator {
+      display: inline-block;
+      margin: 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .overview-page-indicator strong {
+      font-size: 14px;
+    }
+
+    .overview-page-btn {
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      line-height: 38px;
+      text-align: center;
+      border: 1px solid #ccc;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .overview-page-btn .fa {
+      font-size: 16px;
+    }
+
+    .overview-page-btn:hover {
+      background: #f2f2f2;
+      border-color: #5c4b8a;
+      color: #5c4b8a;
     }
   </style>
 </head>
@@ -281,113 +458,219 @@
     </div>
   </div>
 
-  <!-- ============== MAIN CONTENT ============== -->
+  <!-- ============== MAIN CONTENT (MULTI-PAGE) ============== -->
   <section class="page_section overview-section">
     <div class="container">
 
-      <!-- Only the INTRO & TABS section remains -->
-      <section id="intro-section"
-               class="overview-subsection overview-subsection--intro">
-        <div class="overview-subsection-inner">
+      <!-- ========== PAGE 1: MAIN CONTENT / TABS ========== -->
+      <div id="overview-page-1" class="overview-page active">
+        <section id="intro-section"
+                 class="overview-subsection overview-subsection--intro">
+          <div class="overview-subsection-inner">
 
-          <!-- Tabs intro -->
-          <div class="section-heading">
-            <h2>Explore the Movement</h2>
-            <h6>
-              Move from a basic snapshot of the Hilltop Youth to their tactics, culture, and international impact.
-            </h6>
+            <!-- Tabs intro -->
+            <div class="section-heading">
+              <h2>Explore the Movement</h2>
+              <div class="overview-keyline"></div>
+            </div>
+
+            <div class="overview-content-card animated fadeInUp">
+
+              <!-- Tab navigation -->
+              <ul class="nav nav-pills nav-justified tab-nav-overview"
+                  role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#tab-snapshot" aria-controls="tab-snapshot" role="tab" data-toggle="tab">
+                    <i class="fa fa-map-o" aria-hidden="true"></i> Introduction
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#tab-violence" aria-controls="tab-violence" role="tab" data-toggle="tab">
+                    <i class="fa fa-bolt" aria-hidden="true"></i> Violence &amp; “Price-Tag” Attacks
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#tab-culture" aria-controls="tab-culture" role="tab" data-toggle="tab">
+                    <i class="fa fa-users" aria-hidden="true"></i> Leadership &amp; Culture
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#tab-response" aria-controls="tab-response" role="tab" data-toggle="tab">
+                    <i class="fa fa-globe" aria-hidden="true"></i> International Response
+                  </a>
+                </li>
+              </ul>
+
+              <!-- Tab content -->
+              <div class="tab-content">
+
+                <!-- TAB 1 -->
+                <div role="tabpanel" class="tab-pane fade in active" id="tab-snapshot">
+                  <div class="overview-highlight">
+                    Who the Hilltop Youth are and how they emerged within the broader settler movement.
+                  </div>
+                  <p>
+                    The Hilltop Youth is a radical Jewish nationalist movement based primarily in the West Bank,
+                    emerging in the early 2000s as an informal faction within the broader Israeli settler movement.
+                    The group’s ideology blends elements of religious Zionism with neo-Kahanist thought, drawing
+                    heavily on the teachings of Rabbi Meir Kahane, whose writings advocate Jewish territorial
+                    maximalism and the removal of Palestinians from the land (Magid, 2021). Members of the Hilltop
+                    Youth frequently reject the authority of the Israeli state, asserting that divine law obligates
+                    them to establish Jewish presence across the biblical land of Israel, even through illegal
+                    settlement outposts and confrontational actions (Garcia-Navarro, 2012; Tzfadia, 2017).
+                  </p>
+                </div>
+
+                <!-- TAB 2 -->
+                <div role="tabpanel" class="tab-pane fade" id="tab-violence">
+                  <div class="overview-highlight">
+                    How “price-tag” attacks are used as a strategy to pressure both Palestinians and the Israeli state.
+                  </div>
+                  <p>
+                    Across the West Bank, individuals associated with the Hilltop Youth have participated in a range
+                    of violent and retaliatory actions often referred to as “price-tag” attacks, which are acts meant
+                    to intimidate Palestinians and pressure the Israeli government. These incidents include arson,
+                    vandalism of Palestinian mosques and schools, destruction of olive groves, property damage, and
+                    physical assaults (Byman &amp; Sachs, 2012; Satherley, 2013). One of the most notorious cases linked
+                    to this extremist milieu is the 2015 Duma arson attack, in which a Palestinian family’s home was
+                    firebombed, killing three members of the Dawabshe family and drawing widespread condemnation
+                    (Al Jazeera, 2018). Reports also document frequent confrontations between Hilltop Youth activists
+                    and Israeli security forces, as the group’s anti-state ideology increasingly targets both Palestinians
+                    and the Israeli military (Garcia-Navarro, 2012; Holcman, 2025).
+                  </p>
+                </div>
+
+                <!-- TAB 3 -->
+                <div role="tabpanel" class="tab-pane fade" id="tab-culture">
+                  <div class="overview-highlight">
+                    Inside the group’s internal culture, leadership figures, and separatist lifestyle.
+                  </div>
+                  <p>
+                    Recent years have seen a marked escalation in settler violence, with over 1,000 attacks documented
+                    in the West Bank following the October 7, 2023 Hamas attacks (Perliger, 2025). Analysts note that
+                    while the Hilltop Youth lacks formal hierarchy, certain figures such as Meir Ettinger, the grandson
+                    of Rabbi Kahane, have been identified by Israeli authorities as ideological leaders or influential
+                    spokespeople (Magid, 2021). The movement’s internal culture is shaped by separatism and resistance
+                    to modernity; members often avoid digital technology and mainstream communication platforms as part
+                    of a broader effort to maintain ideological purity and communal isolation (Rosenberg &amp;
+                    Vogelman-Natan, 2023).
+                  </p>
+                </div>
+
+                <!-- TAB 4 -->
+                <div role="tabpanel" class="tab-pane fade" id="tab-response">
+                  <div class="overview-highlight">
+                    How international actors have begun to respond to extremist settler violence.
+                  </div>
+                  <p>
+                    International governments have recently taken formal action in response to rising extremist settler
+                    violence. In 2024, both the United States and the European Union designated entities and individuals
+                    tied to the Hilltop Youth as extremist actors. The U.S. Department of the Treasury issued sanctions
+                    citing arson, assaults, and targeted attacks on Palestinian civilians (U.S. Department of the Treasury,
+                    2024), while the EU imposed asset freezes and visa bans on affiliated individuals and organizations
+                    for their involvement in serious human rights abuses in the West Bank (Council of the European Union,
+                    2024). These measures reflect growing global recognition of the group’s role in destabilizing the
+                    region and contributing to the rise of far-right religious extremism in Israel.
+                  </p>
+                </div>
+
+              </div><!-- /.tab-content -->
+
+            </div><!-- /.overview-content-card -->
+
           </div>
+        </section>
 
-          <!-- Tab navigation -->
-          <ul class="nav nav-pills nav-justified tab-nav-overview animated fadeInUp"
-              role="tablist" style="margin-bottom: 25px;">
-            <li role="presentation" class="active">
-              <a href="#tab-snapshot" aria-controls="tab-snapshot" role="tab" data-toggle="tab">
-                Introduction
-              </a>
-            </li>
-            <li role="presentation">
-              <a href="#tab-violence" aria-controls="tab-violence" role="tab" data-toggle="tab">
-                Violence &amp; “Price-Tag” Attacks
-              </a>
-            </li>
-            <li role="presentation">
-              <a href="#tab-culture" aria-controls="tab-culture" role="tab" data-toggle="tab">
-                Leadership &amp; Culture
-              </a>
-            </li>
-            <li role="presentation">
-              <a href="#tab-response" aria-controls="tab-response" role="tab" data-toggle="tab">
-                International Response
-              </a>
-            </li>
-          </ul>
+        <!-- Pagination for Page 1 -->
+        <div class="overview-pagination">
+          <button type="button"
+                  class="btn overview-page-btn overview-page-prev"
+                  data-target-page="1"
+                  disabled>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </button>
 
-          <!-- Tab content -->
-          <div class="tab-content animated fadeInUp">
+          <span class="overview-page-indicator">
+            PAGE <strong class="overview-page-number">1</strong> / 2
+          </span>
 
-            <!-- TAB 1 -->
-            <div role="tabpanel" class="tab-pane fade in active" id="tab-snapshot">
-              <p>
-                The Hilltop Youth is a radical Jewish nationalist movement based primarily in the West Bank,
-                emerging in the early 2000s as an informal faction within the broader Israeli settler movement.
-                The group’s ideology blends elements of religious Zionism with neo-Kahanist thought, drawing
-                heavily on the teachings of Rabbi Meir Kahane, whose writings advocate Jewish territorial
-                maximalism and the removal of Palestinians from the land (Magid, 2021). Members of the Hilltop
-                Youth frequently reject the authority of the Israeli state, asserting that divine law obligates
-                them to establish Jewish presence across the biblical land of Israel, even through illegal
-                settlement outposts and confrontational actions (Garcia-Navarro, 2012; Tzfadia, 2017).
-              </p>
-            </div>
-
-            <!-- TAB 2 -->
-            <div role="tabpanel" class="tab-pane fade" id="tab-violence">
-              <p>
-                Across the West Bank, individuals associated with the Hilltop Youth have participated in a range
-                of violent and retaliatory actions often referred to as “price-tag” attacks, which are acts meant
-                to intimidate Palestinians and pressure the Israeli government. These incidents include arson,
-                vandalism of Palestinian mosques and schools, destruction of olive groves, property damage, and
-                physical assaults (Byman &amp; Sachs, 2012; Satherley, 2013). One of the most notorious cases linked
-                to this extremist milieu is the 2015 Duma arson attack, in which a Palestinian family’s home was
-                firebombed, killing three members of the Dawabshe family and drawing widespread condemnation
-                (Al Jazeera, 2018). Reports also document frequent confrontations between Hilltop Youth activists
-                and Israeli security forces, as the group’s anti-state ideology increasingly targets both Palestinians
-                and the Israeli military (Garcia-Navarro, 2012; Holcman, 2025).
-              </p>
-            </div>
-
-            <!-- TAB 3 -->
-            <div role="tabpanel" class="tab-pane fade" id="tab-culture">
-              <p>
-                Recent years have seen a marked escalation in settler violence, with over 1,000 attacks documented
-                in the West Bank following the October 7, 2023 Hamas attacks (Perliger, 2025). Analysts note that
-                while the Hilltop Youth lacks formal hierarchy, certain figures such as Meir Ettinger, the grandson
-                of Rabbi Kahane, have been identified by Israeli authorities as ideological leaders or influential
-                spokespeople (Magid, 2021). The movement’s internal culture is shaped by separatism and resistance
-                to modernity; members often avoid digital technology and mainstream communication platforms as part
-                of a broader effort to maintain ideological purity and communal isolation (Rosenberg &amp;
-                Vogelman-Natan, 2023).
-              </p>
-            </div>
-
-            <!-- TAB 4 -->
-            <div role="tabpanel" class="tab-pane fade" id="tab-response">
-              <p>
-                International governments have recently taken formal action in response to rising extremist settler
-                violence. In 2024, both the United States and the European Union designated entities and individuals
-                tied to the Hilltop Youth as extremist actors. The U.S. Department of the Treasury issued sanctions
-                citing arson, assaults, and targeted attacks on Palestinian civilians (U.S. Department of the Treasury,
-                2024), while the EU imposed asset freezes and visa bans on affiliated individuals and organizations
-                for their involvement in serious human rights abuses in the West Bank (Council of the European Union,
-                2024). These measures reflect growing global recognition of the group’s role in destabilizing the
-                region and contributing to the rise of far-right religious extremism in Israel.
-              </p>
-            </div>
-
-          </div><!-- /.tab-content -->
-
+          <button type="button"
+                  class="btn overview-page-btn overview-page-next"
+                  data-target-page="2">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </button>
         </div>
-      </section>
+      </div>
+      <!-- ========== END PAGE 1 ========== -->
+
+      <!-- ========== PAGE 2: DOCUMENTARY SECTION ========== -->
+      <div id="overview-page-2" class="overview-page">
+        <section id="documentary-section"
+                 class="overview-subsection overview-subsection--documentary">
+          <div class="overview-subsection-inner">
+            <div class="container text-center" style="max-width: 900px;">
+
+              <div class="section-heading">
+                <h2>Documentary Feature</h2>
+                <div class="overview-keyline"></div>
+              </div>
+
+              <p style="max-width: 700px; margin: 0 auto 24px; font-size: 16px;">
+                Watch Al Jazeera’s documentary
+                <em>“Thou Shalt Not Kill: Israel's Hilltop Youth”</em>
+                for a deeper look into the group’s activities, daily life on the outposts, and how their
+                ideology appears on camera.
+              </p>
+
+              <!-- Thumbnail with animated frame + optional play icon -->
+              <a href="https://www.aljazeera.com/video/radicalised-youth/2018/11/13/thou-shalt-not-kill-israels-hilltop-youth"
+                 target="_blank" style="display: inline-block; text-decoration: none; margin-top: 10px;">
+
+                <div class="doc-thumb-wrapper">
+                  <img src="img/thumbnail.webp"
+                       alt="Documentary Thumbnail"
+                       class="doc-thumbnail-img">
+                  <!-- Optional upgrade: animated play button overlay -->
+                  <div class="doc-play-icon">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                  </div>
+                </div>
+
+                <div style="margin-top: 12px; font-size: 15px; color: #444;">
+                  Click to watch the documentary on Al Jazeera &rarr;
+                </div>
+              </a>
+
+              <p style="margin-top: 24px; font-size: 13px; color: #777;">
+                Source: Al Jazeera. (2018, November 13).
+                <em>Thou Shalt Not Kill: Israel’s Hilltop Youth.</em>
+              </p>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Pagination for Page 2 -->
+        <div class="overview-pagination">
+          <button type="button"
+                  class="btn overview-page-btn overview-page-prev"
+                  data-target-page="1">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </button>
+
+          <span class="overview-page-indicator">
+            PAGE <strong class="overview-page-number">2</strong> / 2
+          </span>
+
+          <button type="button"
+                  class="btn overview-page-btn overview-page-next"
+                  data-target-page="2"
+                  disabled>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <!-- ========== END PAGE 2 ========== -->
 
     </div>
   </section>
@@ -447,6 +730,51 @@
           section.classList.add("visible");
         });
       }
+
+      // ===== Simple page navigation (Overview Page 1 ↔ 2) =====
+      var currentPage = 1;
+      var totalPages = 2;
+
+      function showPage(page) {
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+
+        var pages = document.querySelectorAll(".overview-page");
+        pages.forEach(function (pageEl, index) {
+          pageEl.classList.toggle("active", index === (currentPage - 1));
+        });
+
+        // Update all page-number indicators
+        var nums = document.querySelectorAll(".overview-page-number");
+        nums.forEach(function (span) {
+          span.textContent = currentPage;
+        });
+
+        // Scroll back to top of overview section
+        var overviewTop = document.querySelector(".page_section.overview-section");
+        if (overviewTop) {
+          overviewTop.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      var nextBtns = document.querySelectorAll(".overview-page-next");
+      var prevBtns = document.querySelectorAll(".overview-page-prev");
+
+      nextBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (currentPage < totalPages) {
+            showPage(currentPage + 1);
+          }
+        });
+      });
+
+      prevBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          if (currentPage > 1) {
+            showPage(currentPage - 1);
+          }
+        });
+      });
     });
   </script>
 </body>
